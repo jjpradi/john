@@ -28,27 +28,25 @@ class App extends Component {
 
     console.log(product)
 
-    const existingItem = cartList.find(e => e.id == product.id)
+    const existingItem = cartList.find(e => e.id === product.id)
 
     console.log(existingItem)
 
-console.log(  (        parseInt(product.price) * parseInt(product.quantity)))
+    console.log(parseInt(product.price) * parseInt(product.quantity))
 
     if (existingItem !== undefined) {
       this.setState(prevState => ({
         cartList: prevState.cartList.map(e =>
           e.id === product.id ? {...e, quantity: e.quantity + 1} : null,
         ),
-        totalCartAmount:
-          prevState.totalCartAmount +
-  (        parseInt(product.price) ),
+        totalCartAmount: prevState.totalCartAmount + parseInt(product.price),
       }))
     } else
       this.setState(prevState => ({
         cartList: [...prevState.cartList, product],
         totalCartAmount:
           prevState.totalCartAmount +
-   (       parseInt(product.price) *parseInt(product.quantity)),
+          parseInt(product.price) * parseInt(product.quantity),
 
         count: prevState.count + 1,
       }))
@@ -58,39 +56,52 @@ console.log(  (        parseInt(product.price) * parseInt(product.quantity)))
 
   decrementCartItemQuantity = details => {
     const {price, quantity} = details
-    this.setState(prevState => ({
-      cartList: prevState.cartList.map(e =>
-        e.id == details.id ? {...e, quantity: e.quantity - 1} : null,
-      ),
-      totalCartAmount: prevState.totalCartAmount - price,
-    }))
+
+    console.log(quantity)
+
+    console.log(details)
+
+    if (quantity > 1) {
+      this.setState(prevState => ({
+        cartList: prevState.cartList.map(e =>
+          e.id === details.id ? {...e, quantity: e.quantity - 1} : e,
+        ),
+        totalCartAmount: prevState.totalCartAmount - price,
+      }))
+    }
   }
 
   incrementCartItemQuantity = details => {
     console.log(details)
 
     const {quantity, price} = details
-    const existingItem = this.state.cartList.find(e => e.id == details.id)
+    const {cartList} = this.state
+    const existingItem = cartList.find(e => e.id === details.id)
     console.log(details)
 
     this.setState(prevState => ({
       cartList: prevState.cartList.map(e =>
-        e.id == details.id ? {...e, quantity: e.quantity + 1} : e,
+        e.id === details.id ? {...e, quantity: e.quantity + 1} : e,
       ),
       totalCartAmount: prevState.totalCartAmount + price,
     }))
   }
+
   removeCartItem = id => {
-    const filteredList = this.state.cartList.filter(e => e.id !== id)
+    const {cartList} = this.state
+    const filteredList = cartList.filter(e => e.id !== id)
 
     this.setState({
       cartList: filteredList,
     })
+
+    this.setState(prevState => ({count: prevState.count - 1}))
   }
 
-  onRemoval = () => {
+  removeAllCartItems = () => {
     this.setState({
       cartList: [],
+      count: 0,
     })
   }
 
@@ -103,8 +114,10 @@ console.log(  (        parseInt(product.price) * parseInt(product.quantity)))
           cartList,
           totalCartAmount,
           count,
+          removeAllCartItems: this.removeAllCartItems,
 
           onRemoval: this.onRemoval,
+
           addCartItem: this.addCartItem,
           removeCartItem: this.removeCartItem,
           incrementCartItemQuantity: this.incrementCartItemQuantity,

@@ -1,5 +1,5 @@
 // Write your code here
-
+import './index.css'
 import CartContext from '../../context/CartContext'
 
 const CartSummary = () => (
@@ -8,8 +8,8 @@ const CartSummary = () => (
       const {totalCartAmount, count} = value
 
       return (
-        <div>
-          <h1>Order Total :Rs{totalCartAmount}</h1>
+        <div className="summary-info">
+          <h1 className="">Order Total : Rs{totalCartAmount}/-</h1>
 
           <p> {count} Items in cart</p>
         </div>
@@ -19,5 +19,3 @@ const CartSummary = () => (
 )
 
 export default CartSummary
-
-3

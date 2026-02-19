@@ -1,124 +1,182 @@
+import confetti from 'canvas-confetti'
+import React, {useState} from 'react'
+import Popup from 'reactjs-popup'
+
 import Header from '../Header'
 import CartListView from '../CartListView'
-import Popup from 'reactjs-popup'
 import CartContext from '../../context/CartContext'
 import EmptyCartView from '../EmptyCartView'
 import CartSummary from '../CartSummary'
 import './index.css'
 import CheckoutView from '../CheckoutView'
 
-import {useState} from "react"
+const shootGiftPaper = () => {
+  confetti({
+    particleCount: 200,
+
+    spread: 120,
+
+    startVelocity: 40,
+
+    gravity: 0.8,
+
+    shapes: ['square'],
+
+    colors: ['#ff0000', '#00ff00', '#ffd700', '#ff69b4'],
+  })
+}
 
 const Cart = () => {
+  const [method, setMethod] = useState('Cash On Delivery')
 
-  const [method,setMethod]=useState("Cash On Delivery")
-return(  <CartContext.Consumer>
-    {value => {
-      const {cartList, onRemoval, totalCartAmount} = value
+  const [shoot, setShoot] = useState(false)
 
-      const removeAll = () => {
-        onRemoval()
-      }
+  const shootSuccess = () => {
+    console.log(shoot)
+    console.log('shoot')
+    setShoot(true)
 
-      const showEmptyView = cartList.length === 0
-      // TODO: Update the functionality to remove all the items in the cart
-      const onPayment = event => {
+    if (shoot === true) {
+      shootGiftPaper()
+    }
+  }
+  return (
+    <CartContext.Consumer>
+      {value => {
+        const {cartList, onRemoval, removeAllCartItems, totalCartAmount} = value
 
+        const removeAll = () => {
+          removeAllCartItems()
+        }
 
-        setMethod(event.target.value)
-        console.log(event.target)
-      }
+        const showEmptyView = cartList.length === 0
+        // TODO: Update the functionality to remove all the items in the cart
+        const onPayment = event => {
+          setMethod(event.target.value)
+          console.log(event.target)
+        }
 
-      const overlayStyles = {
-        background: '#ffffff',
-      }
+        const overlayStyles = {
+          background: '#ffffff',
+        }
 
-      const onSuccess=()=>{
+        return (
+          <>
+            <Header />
+            <div className="cart-container">
+              {showEmptyView ? (
+                <EmptyCartView />
+              ) : (
+                <div className="cart-content-container">
+                  <h1 className="cart-heading">My Cart</h1>
 
-        return(
-<p>Your order successfully placed</p>
+                  <div className="remove-all-button">
+                    <button className="all-button" onClick={removeAll}>
+                      Remove All
+                    </button>
+                  </div>
 
-        )
-      }
+                  <CartListView />
 
-      return (
-        <>
-          <Header />
-          <div className="cart-container">
-            {showEmptyView ? (
-              <EmptyCartView />
-            ) : (
-              <div className="cart-content-container">
-                <h1 className="cart-heading">My Cart</h1>
+                  {/* TODO: Add your code for Cart Summary here */}
 
-                <div>
-                  <button onClick={removeAll}>Remove All</button>
+                  <div className="cart-summary">
+                    <CartSummary />
+
+                    <Popup
+                      className="pop-up"
+                      trigger={open => (
+                        <div>
+                          <button className="check-btn">Checkout</button>
+                        </div>
+                      )}
+                      modal
+                      nested
+                    >
+                      {close => (
+                        <div className="modal">
+                          <button className="close" onClick={close}>
+                            *
+                          </button>
+
+                          <div className="c">
+                            <CartSummary />
+
+                            <ul
+                              className="modal-list"
+                              onChange={w => onPayment(w)}
+                            >
+                              <li>
+                                <input
+                                  type="radio"
+                                  id="card"
+                                  name="pay"
+                                  value="Card"
+                                />
+
+                                <label htmlFor="card">card</label>
+                              </li>
+
+                              <li>
+                                <input
+                                  type="radio"
+                                  name="pay"
+                                  id="upi"
+                                  value="UPI Wallet"
+                                />
+
+                                <label htmlFor="upi"> UPI Wallet</label>
+                              </li>
+                              <li>
+                                <input
+                                  id="net"
+                                  type="radio"
+                                  name="pay"
+                                  value="Net Banking"
+                                />
+
+                                <label htmlFor="net">Net Banking</label>
+                              </li>
+
+                              <li>
+                                <input
+                                  type="radio"
+                                  id="cash"
+                                  defaultChecked
+                                  name="pay"
+                                  value="Cash On Delivery"
+                                />
+
+                                <label htmlFor="cash">Cash On Delivery</label>
+                              </li>
+                            </ul>
+                          </div>
+
+                          {method === 'Cash On Delivery' ? (
+                            <Popup
+                              trigger={open => (
+                                <button
+                                  className="confirm-button"
+                                  onClick={shootSuccess}
+                                >
+                                  Confirm Order
+                                </button>
+                              )}
+                            >
+                              <CheckoutView />
+                            </Popup>
+                          ) : null}
+                        </div>
+                      )}
+                    </Popup>
+                  </div>
                 </div>
-
-                <CartListView />
-
-                {/* TODO: Add your code for Cart Summary here */}
-
-                <CartSummary />
-                <Popup
-                  modal
-                  trigger={open => <button>Checkout</button>}
-                  overlayStyle={overlayStyles}
-                >
-                  <ul onChange={w => onPayment(w)}>
-                    <li>
-                      <input type="radio" id="card" name="pay" value="Card" />
-
-                      <label htmlFor="card">card</label>
-                    </li>
-                    <li>
-                      <input
-                        type="radio"
-                        name="pay"
-                        id="upi"
-                        value="UPI Wallet"
-                      />
-
-                      <label htmlFor="upi"> UPI Wallet</label>
-                    </li>
-                    <li>
-                      <input
-                        id="net"
-                        type="radio"
-                        name="pay"
-                        value="Net Banking"
-                      />
-
-                      <label htmlFor="net">Net Banking</label>
-                    </li>
-                    <li>
-                      <input
-                        type="radio"
-                        id="cash"
-                        defaultChecked
-                        name="pay"
-                        value="Cash On Delivery"
-                      />
-                      <label htmlFor="cash">Cash On Delivery</label>
-                    </li>
-                  </ul>
-<Popup  
-
-trigger={   method==="Cash On Delivery"? <button>place order</button>:null}
->
-
-<p>order placed successfully</p>
-</Popup>
-                 
-                </Popup>
-              </div>
-            )}
-          </div>
-        </>
-      )
-    }}
-  </CartContext.Consumer>
-)
-
+              )}
+            </div>
+          </>
+        )
+      }}
+    </CartContext.Consumer>
+  )
 }
 export default Cart

@@ -37,20 +37,22 @@ const CartItem = props => (
               <p className="cart-product-brand">by {brand}</p>
             </div>
             <div className="cart-quantity-container">
-              <button
-                type="button"
-                data-testid="minus"
-                className="quantity-controller-button"
-              >
-                <BsDashSquare onClick={onDecrement} color="#52606D" size={12} />
+              <button type="button" className="quantity-controller-button">
+                <BsDashSquare
+                  data-testid="minus"
+                  onClick={onDecrement}
+                  color="#52606D"
+                  size={12}
+                />
               </button>
               <p className="cart-quantity">{quantity}</p>
-              <button
-                data-testid="plus"
-                type="button"
-                className="quantity-controller-button"
-              >
-                <BsPlusSquare onClick={onIncrement} color="#52606D" size={12} />
+              <button type="button" className="quantity-controller-button">
+                <BsPlusSquare
+                  data-testid="plus"
+                  onClick={onIncrement}
+                  color="#52606D"
+                  size={12}
+                />
               </button>
             </div>
             <div className="total-price-remove-container">

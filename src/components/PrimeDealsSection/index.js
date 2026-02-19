@@ -16,6 +16,7 @@ const apiStatusConstants = {
 class PrimeDealsSection extends Component {
   state = {
     primeDeals: [],
+
     apiStatus: apiStatusConstants.initial,
   }
 
@@ -37,8 +38,6 @@ class PrimeDealsSection extends Component {
       },
       method: 'GET',
     }
-
-
 
     const response = await fetch(apiUrl, options)
     if (response.ok === true) {
