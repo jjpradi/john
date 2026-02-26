@@ -26,10 +26,7 @@ class CheckoutView extends Component {
     shootGiftPaper()
   }
 
- 
- 
   render() {
-
     return (
       <p className="success-order">Your order has been placed successfully</p>
     )

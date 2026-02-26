@@ -1,11 +1,3 @@
-
-
-const Order=()=>{
-
-    return(
-        <div>
-        </div>
-    )
-}
+const Order = () => <div />
 
 export default Order

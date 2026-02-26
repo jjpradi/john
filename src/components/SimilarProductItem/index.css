@@ -3,10 +3,8 @@
   flex-direction: column;
   list-style-type: none;
 }
-.similar-link{
-
-text-decoration: none;
-
+.similar-link {
+  text-decoration: none;
 }
 @media screen and (min-width: 768px) {
   .similar-product-item {
