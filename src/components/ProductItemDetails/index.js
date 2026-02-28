@@ -3,8 +3,12 @@ import {Link} from 'react-router-dom'
 import Cookies from 'js-cookie'
 import Loader from 'react-loader-spinner'
 import {BsPlusSquare, BsDashSquare} from 'react-icons/bs'
-
+import ImageOptimizer  from '../ImageOptimizer'
 import CartContext from '../../context/CartContext'
+
+
+
+
 
 import Header from '../Header'
 import SimilarProductItem from '../SimilarProductItem'
@@ -24,13 +28,17 @@ class ProductItemDetails extends Component {
     similarProductsData: [],
     apiStatus: apiStatusConstants.initial,
     quantity: 1,
+    showOptimizer:false
   }
+
+
 
   componentDidMount() {
     this.getProductData()
   }
 
   getFormattedData = data => ({
+
     availability: data.availability,
     brand: data.brand,
     description: data.description,
@@ -40,12 +48,23 @@ class ProductItemDetails extends Component {
     rating: data.rating,
     title: data.title,
     totalReviews: data.total_reviews,
+
+
   })
 
   getProductData = async () => {
+    
     const {match} = this.props
     const {params} = match
+    
     const {id} = params
+
+    
+    
+
+
+    
+
 
     this.setState({
       apiStatus: apiStatusConstants.inProgress,
@@ -61,10 +80,22 @@ class ProductItemDetails extends Component {
     const response = await fetch(apiUrl, options)
     if (response.ok) {
       const fetchedData = await response.json()
+      
       const updatedData = this.getFormattedData(fetchedData)
+     
+
+      localStorage.setItem('recentlyViewed',JSON.stringify(updatedData))
+
+
       const updatedSimilarProductsData = fetchedData.similar_products.map(
+     
+     
         eachSimilarProduct => this.getFormattedData(eachSimilarProduct),
+     
+
+        
       )
+     
       this.setState({
         productData: updatedData,
         similarProductsData: updatedSimilarProductsData,
@@ -100,6 +131,7 @@ class ProductItemDetails extends Component {
     </div>
   )
 
+  
   onDecrementQuantity = () => {
     const {quantity} = this.state
     if (quantity > 1) {
@@ -107,15 +139,49 @@ class ProductItemDetails extends Component {
     }
   }
 
+
+
+  onViewImage=()=>{
+
+    const {imageUrl}=this.state.productData
+this.setState({
+
+showOptimizer:true
+
+})
+
+console.log(imageUrl)
+
+
+
+return   
+       
+
+
+<ImageOptimizer           src={imageUrl} alt="product"   />
+
+
+
+
+
+
+      }
+
+
+  
+
   onIncrementQuantity = () => {
     this.setState(prevState => ({quantity: prevState.quantity + 1}))
   }
 
   renderProductDetailsView = () => (
-    <CartContext.Consumer>
+  
+  
+  <CartContext.Consumer>
+      
       {value => {
         const {incrementCartItemQuantity, decrementCartItemQuantity} = value
-        const {productData, quantity, similarProductsData} = this.state
+        const {productData, quantity, similarProductsData,showOptimizer} = this.state
         const {
           availability,
           brand,
@@ -137,11 +203,24 @@ class ProductItemDetails extends Component {
 
         const onDecrementQuantity = () => {
           decrementCartItemQuantity()
+  
         }
+
         return (
           <div className="product-details-success-view">
             <div className="product-details-container">
-              <img src={imageUrl} alt="product" className="product-image" />
+
+
+          <img   onMouseMove={this.onViewImage}      src={imageUrl} alt="product" className="product-image" />
+          
+
+          
+<ImageOptimizer                />
+
+          
+          
+           
+            
               <div className="product">
                 <h1 className="product-name">{title}</h1>
                 <p className="price-details">Rs {price}/-</p>

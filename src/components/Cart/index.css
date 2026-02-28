@@ -9,6 +9,11 @@
   justify-content: space-around;
   align-items: center;
   align-self: flex-end;
+
+  border: solid 3px #ffffff;
+  
+
+
 }
 
 .pop-up {
@@ -49,7 +54,9 @@
   padding: 57px;
   color: #ffffff;
 
-  background-color: #64748b;
+  background-color: grey;
+  
+
   border-radius: 23px;
 
   height: 63vh;

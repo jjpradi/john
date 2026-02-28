@@ -4,6 +4,7 @@ import Cookies from 'js-cookie'
 import CartContext from '../../context/CartContext'
 
 import './index.css'
+import DarkModeToggle from '../DarkModeToggle'
 
 const Header = props => {
   const onClickLogout = () => {
@@ -76,11 +77,20 @@ const Header = props => {
             </li>
 
             <li className="nav-menu-item">
+              <Link to="/orders" className="nav-link">
+                Orders
+              </Link>
+            </li>
+
+
+            <li className="nav-menu-item">
               <Link to="/cart" className="nav-link">
                 Cart
                 {renderCartItemsCount()}
               </Link>
+
             </li>
+            <DarkModeToggle/>
           </ul>
           <button
             type="button"

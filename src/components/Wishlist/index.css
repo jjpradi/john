@@ -1,0 +1,45 @@
+.wishlist-container {
+    padding: 24px;
+    background: #f9f9f9;
+    border-radius: 12px;
+    max-width: 400px;
+    margin: 24px auto;
+}
+
+.wishlist-container h2 {
+    margin-bottom: 16px;
+}
+
+.wishlist-container ul {
+    list-style: none;
+    padding: 0;
+}
+
+.wishlist-container li {
+    display: flex;
+    align-items: center;
+    margin-bottom: 12px;
+    background: #fff;
+    border-radius: 8px;
+    padding: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.wishlist-container img {
+    margin-right: 12px;
+    border-radius: 6px;
+}
+
+.wishlist-container button {
+    margin-left: auto;
+    background: #ff4d4f;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    padding: 6px 12px;
+    cursor: pointer;
+}
+
+.wishlist-container button:hover {
+    background: #d9363e;
+}

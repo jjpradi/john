@@ -2,10 +2,14 @@ import {Link} from 'react-router-dom'
 import Header from '../Header'
 
 import './index.css'
+import AIRecommendations from '../AIRecommendations'
+import RecentlyViewed from '../RecentlyViewed'
 
 const Home = () => (
   <>
+
     <Header />
+
     <div className="home-container">
       <div className="home-content">
         <h1 className="home-heading">Clothes That Get YOU Noticed</h1>
@@ -32,7 +36,15 @@ const Home = () => (
         alt="clothes that get you noticed"
         className="home-desktop-img"
       />
+
+
+
     </div>
+
+
+    <AIRecommendations />
+
+    <RecentlyViewed />
   </>
 )
 

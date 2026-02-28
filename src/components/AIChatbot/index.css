@@ -1,0 +1,18 @@
+.ai-chatbot {
+    padding: 1rem;
+    background: #f9f9f9;
+    border-radius: 8px;
+}
+
+.chat-window {
+    min-height: 60px;
+    margin-bottom: 0.5rem;
+}
+
+.user {
+    color: #007bff;
+}
+
+.bot {
+    color: #28a745;
+}

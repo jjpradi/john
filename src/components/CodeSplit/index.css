@@ -1,0 +1,9 @@
+.code-split {
+    padding: 1rem;
+    background: #f9f9f9;
+    border-radius: 8px;
+}
+
+.code-split .loading {
+    color: #888;
+}

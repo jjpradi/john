@@ -1,0 +1,26 @@
+.ai-recommendations {
+    padding: 1rem;
+    background: #f9f9f9;
+    border-radius: 8px;
+}
+
+.ai-recommendations h2 {
+    margin-bottom: 0.5rem;
+}
+
+.ai-recommendations ul {
+    list-style: none;
+    padding: 0;
+}
+
+.ai-recommendations li {
+    margin-bottom: 0.25rem;
+}
+
+.recommende-list{
+
+display:flex;
+flex-direction: row;
+flex-wrap: wrap;
+
+}

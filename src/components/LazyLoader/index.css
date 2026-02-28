@@ -1,0 +1,9 @@
+.lazy-loader {
+    padding: 1rem;
+    background: #f9f9f9;
+    border-radius: 8px;
+}
+
+.lazy-loader .loading {
+    color: #888;
+}

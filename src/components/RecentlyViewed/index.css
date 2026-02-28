@@ -1,0 +1,18 @@
+.recently-viewed {
+    padding: 1rem;
+    background: #f9f9f9;
+    border-radius: 8px;
+}
+
+.recently-viewed h2 {
+    margin-bottom: 0.5rem;
+}
+
+.recently-viewed ul {
+    list-style: none;
+    padding: 0;
+}
+
+.recently-viewed li {
+    margin-bottom: 0.25rem;
+}

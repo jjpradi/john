@@ -1,7 +1,7 @@
-import confetti from 'canvas-confetti'
-import React, {useState} from 'react'
-import Popup from 'reactjs-popup'
 
+import confetti from 'canvas-confetti'
+import React, { useState } from 'react'
+import Popup from 'reactjs-popup'
 import Header from '../Header'
 import CartListView from '../CartListView'
 import CartContext from '../../context/CartContext'
@@ -26,157 +26,127 @@ const shootGiftPaper = () => {
   })
 }
 
-const Cart = () => {
-  const [method, setMethod] = useState('Cash On Delivery')
 
-  const [shoot, setShoot] = useState(false)
 
-  const shootSuccess = () => {
-    console.log(shoot)
-    console.log('shoot')
-    setShoot(true)
+  const Cart = () => {
+    const [method, setMethod] = useState('Cash On Delivery')
+    const [showSuccess, setShowSuccess] = useState(false)
+    const [showCheckout, setShowCheckout] = useState(false)
 
-    if (shoot === true) {
-      shootGiftPaper()
+    const handlePaymentChange = event => {
+      setMethod(event.target.value)
     }
-  }
-  return (
-    <CartContext.Consumer>
-      {value => {
-        const {cartList, onRemoval, removeAllCartItems, totalCartAmount} = value
 
-        const removeAll = () => {
-          removeAllCartItems()
-        }
+    const handleCheckout = () => {
 
-        const showEmptyView = cartList.length === 0
-        // TODO: Update the functionality to remove all the items in the cart
-        const onPayment = event => {
-          setMethod(event.target.value)
-          console.log(event.target)
-        }
 
-        const overlayStyles = {
-          background: '#ffffff',
-        }
+      setShowCheckout(true)
 
-        return (
-          <>
-            <Header />
-            <div className="cart-container">
-              {showEmptyView ? (
-                <EmptyCartView />
-              ) : (
-                <div className="cart-content-container">
-                  <h1 className="cart-heading">My Cart</h1>
 
-                  <div className="remove-all-button">
-                    <button className="all-button" onClick={removeAll}>
-                      Remove All
-                    </button>
-                  </div>
+    }
 
-                  <CartListView />
+    const handleConfirmOrder = () => {
+      setShowSuccess(true)
+      shootGiftPaper()
+      setTimeout(() => {
+        setShowCheckout(false)
+        setShowSuccess(false)
+      }, 3000)
+    }
 
-                  {/* TODO: Add your code for Cart Summary here */}
+    const overlayStyle = {
+      background: 'rgba(0, 0, 0, 0.5)',
+   
+    }
 
-                  <div className="cart-summary">
-                    <CartSummary />
 
-                    <Popup
-                      className="pop-up"
-                      trigger={open => (
-                        <div>
-                          <button className="check-btn">Checkout</button>
-                        </div>
-                      )}
-                      modal
-                      nested
-                    >
-                      {close => (
-                        <div className="modal">
-                          <button className="close" onClick={close}>
-                            *
+    return (
+      <CartContext.Consumer>
+        {value => {
+          const { cartList, removeAllCartItems } = value
+          const showEmptyView = cartList.length === 0
+          return (
+            <>
+              <Header />
+
+
+              <div className="cart-container">
+                {showEmptyView ? (
+                  <EmptyCartView />
+                ) : (
+                  
+
+                  <div className="cart-content-container">
+                  
+                  {showCheckout==false&&
+                   ( <div>
+                    <h1 className="cart-heading">My Cart</h1>
+                    <div className="remove-all-button">
+                      <button className="all-button" onClick={removeAllCartItems}>
+                        Remove All
+                      </button>
+                    </div>
+                    <CartListView />
+                    <div className="cart-summary">
+                      <CartSummary />
+                     
+                      <button className="check-btn" onClick={handleCheckout}>
+                     
+                        Checkout
+
+                      </button>
+                    </div>
+                    </div>)}
+                    {showCheckout && (
+
+                      
+                      <div className="checkout-modal" style={overlayStyle}>
+                        <div className="checkout-content">
+                          <button className="close" onClick={() => setShowCheckout(false)}>
+                            ×
                           </button>
-
-                          <div className="c">
-                            <CartSummary />
-
-                            <ul
-                              className="modal-list"
-                              onChange={w => onPayment(w)}
-                            >
-                              <li>
-                                <input
-                                  type="radio"
-                                  id="card"
-                                  name="pay"
-                                  value="Card"
-                                />
-
-                                <label htmlFor="card">card</label>
-                              </li>
-
-                              <li>
-                                <input
-                                  type="radio"
-                                  name="pay"
-                                  id="upi"
-                                  value="UPI Wallet"
-                                />
-
-                                <label htmlFor="upi"> UPI Wallet</label>
-                              </li>
-                              <li>
-                                <input
-                                  id="net"
-                                  type="radio"
-                                  name="pay"
-                                  value="Net Banking"
-                                />
-
-                                <label htmlFor="net">Net Banking</label>
-                              </li>
-
-                              <li>
-                                <input
-                                  type="radio"
-                                  id="cash"
-                                  defaultChecked
-                                  name="pay"
-                                  value="Cash On Delivery"
-                                />
-
-                                <label htmlFor="cash">Cash On Delivery</label>
-                              </li>
-                            </ul>
+                          <h2>Checkout</h2>
+                          <CartSummary />
+                          <div className="payment-methods">
+                            <h3>Select Payment Method</h3>
+                            <label>
+                              <input type="radio" name="pay" value="Card" checked={method === 'Card'} onChange={handlePaymentChange} /> Card
+                            </label>
+                            <label>
+                              <input type="radio" name="pay" value="UPI Wallet" checked={method === 'UPI Wallet'} onChange={handlePaymentChange} /> UPI Wallet
+                            </label>
+                            <label>
+                              <input type="radio" name="pay" value="Net Banking" checked={method === 'Net Banking'} onChange={handlePaymentChange} /> Net Banking
+                            </label>
+                            <label>
+                              <input type="radio" name="pay" value="Cash On Delivery" checked={method === 'Cash On Delivery'} onChange={handlePaymentChange} /> Cash On Delivery
+                            </label>
                           </div>
-
-                          {method === 'Cash On Delivery' ? (
-                            <Popup
-                              trigger={open => (
-                                <button
-                                  className="confirm-button"
-                                  onClick={shootSuccess}
-                                >
-                                  Confirm Order
-                                </button>
-                              )}
-                            >
-                              <CheckoutView />
-                            </Popup>
-                          ) : null}
+                          <button className="confirm-button" onClick={handleConfirmOrder}>
+                            Confirm Order
+                          </button>
+                          
+                          <p style={{ textAlign: 'center', marginTop: '10px' }}>
+                            
+                            Payment Method: <b>{method}</b>
+                          
+                          </p>
                         </div>
-                      )}
-                    </Popup>
+                      </div>
+                    )}
+                    {showSuccess && (
+                      <div className="checkout-success">
+                        <CheckoutView />
+                      </div>
+                    )}
                   </div>
-                </div>
-              )}
-            </div>
-          </>
-        )
-      }}
-    </CartContext.Consumer>
-  )
-}
-export default Cart
+                )}
+              </div>
+            </>
+          )
+        }}
+      </CartContext.Consumer>
+    )
+  }
+
+  export default Cart

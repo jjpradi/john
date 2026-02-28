@@ -1,0 +1,9 @@
+.animated-section {
+    padding: 1rem;
+    background: #f9f9f9;
+    border-radius: 8px;
+}
+
+.animated-section h2 {
+    margin-bottom: 0.5rem;
+}

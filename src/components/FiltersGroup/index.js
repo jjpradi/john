@@ -1,6 +1,7 @@
 import {BsSearch} from 'react-icons/bs'
 
 import './index.css'
+import DebouncedSearch from '../DebouncedSearch'
 
 const FiltersGroup = props => {
   const renderRatingsFiltersList = () => {
@@ -83,6 +84,7 @@ const FiltersGroup = props => {
     const {searchInput} = props
     return (
       <div className="search-input-container">
+      <DebouncedSearch>
         <input
           value={searchInput}
           type="search"
@@ -91,6 +93,8 @@ const FiltersGroup = props => {
           onChange={onChangeSearchInput}
           onKeyDown={onEnterSearchInput}
         />
+
+        </DebouncedSearch>
         <BsSearch className="search-icon" />
       </div>
     )
