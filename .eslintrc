@@ -54,7 +54,7 @@
     "react/button-has-type": "off",
     "react/no-unescaped-entities": "off",
     "react/jsx-props-no-spreading": "off",
-    "operator-assignment": ["warn", "always"],
+    "operator-assignment": ["off", "always"],
     "radix": "off"
   }
 }
