@@ -46,7 +46,6 @@
     "format": "prettier --write \"./src\"",
     "run-all": "npm-run-all --parallel test lint:fix"
   },
-  
   "lint-staged": {
     "*.js": [
       "npm run lint:fix"
@@ -55,7 +54,6 @@
       "npm run format"
     ]
   },
-  
   "husky": {
     "hooks": {
       "pre-commit": "lint-staged"

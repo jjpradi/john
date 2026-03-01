@@ -6,16 +6,22 @@ const Wishlist = () => {
     const [items, setItems] = useState([]);
 
     useEffect(() => {
+    
         const stored = localStorage.getItem(WISHLIST_KEY);
         if (stored) setItems(JSON.parse(stored));
+    
     }, []);
 
     useEffect(() => {
+
         localStorage.setItem(WISHLIST_KEY, JSON.stringify(items));
-    }, [items]);
+    
+}, [items]);
 
     const removeItem = id => {
+    
         setItems(items.filter(item => item.id !== id));
+    
     };
 
     return (

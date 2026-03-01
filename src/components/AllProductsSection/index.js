@@ -263,8 +263,8 @@ console.log(fetchedData)
         <FiltersGroup
           searchInput={searchInput}
           categoryOptions={categoryOptions}
-          ratingsList={ratingsList}
-          changeSearchInput={this.changeSearchInput}
+              ratingsList={ratingsList}
+              changeSearchInput={this.changeSearchInput}
           enterSearchInput={this.enterSearchInput}
           activeCategoryId={activeCategoryId}
           activeRatingId={activeRatingId}
