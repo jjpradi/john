@@ -259,6 +259,7 @@ console.log(fetchedData)
           <meta name="description" content="Browse and filter all products. Find the best deals on clothing, electronics, appliances, grocery, and toys." />
           <meta name="keywords" content="products, shop, online, deals, clothing, electronics, appliances, grocery, toys" />
         </Helmet>
+        
         <FiltersGroup
           searchInput={searchInput}
           categoryOptions={categoryOptions}
@@ -271,6 +272,8 @@ console.log(fetchedData)
           changeRating={this.changeRating}
           clearFilters={this.clearFilters}
         />
+        
+
         {this.renderAllProducts()}
       </div>
     )

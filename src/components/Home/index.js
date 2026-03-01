@@ -9,7 +9,7 @@ const Home = () => (
   <>
 
     <Header />
-
+    <div   style={{display:"flex",flexDirection:"column",justifyContent:"space-around"}} > 
     <div className="home-container">
       <div className="home-content">
         <h1 className="home-heading">Clothes That Get YOU Noticed</h1>
@@ -38,13 +38,15 @@ const Home = () => (
       />
 
 
+</div>
+    
+<AIRecommendations />
+
+    <RecentlyViewed />
 
     </div>
 
 
-    <AIRecommendations />
-
-    <RecentlyViewed />
   </>
 )
 

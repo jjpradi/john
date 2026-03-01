@@ -155,11 +155,10 @@ class App extends Component {
         
           <Redirect to="not-found" />
         </Switch>
-        <LazyLoader Component={AIRecommendations} />
-        <AIChatbot />
       </CartContext.Provider>
     )
   }
 }
+
 
 export default App
