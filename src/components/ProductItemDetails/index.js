@@ -210,12 +210,11 @@ return
           <div className="product-details-success-view">
             <div className="product-details-container">
 
-
+<ImageOptimizer   src={imageUrl} alt="product" >
           <img   onMouseMove={this.onViewImage}      src={imageUrl} alt="product" className="product-image" />
-          
+          </ImageOptimizer>
 
           
-<ImageOptimizer                />
 
           
           

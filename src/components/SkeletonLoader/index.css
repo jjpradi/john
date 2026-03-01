@@ -1,13 +1,27 @@
 .skeleton-loader {
-    padding: 1rem;
-    background: #f9f9f9;
-    border-radius: 8px;
+    padding: 2rem;
+    background: linear-gradient(135deg, #f9f9f9 60%, #e3e6ff 100%);
+    border-radius: 16px;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+    max-width: 500px;
+    margin: 2rem auto;
 }
 
 .skeleton {
-    background: #e0e0e0;
+    background: linear-gradient(90deg, #e0e0e0 25%, #f3f3f3 50%, #e0e0e0 75%);
     border-radius: 4px;
     margin-bottom: 0.5rem;
+    animation: skeleton-loading 1.2s infinite linear;
+}
+
+@keyframes skeleton-loading {
+    0% {
+        background-position: -200px 0;
+    }
+
+    100% {
+        background-position: 200px 0;
+    }
 }
 
 .skeleton-title {

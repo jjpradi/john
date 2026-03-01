@@ -1,9 +1,15 @@
 .lazy-loader {
-    padding: 1rem;
-    background: #f9f9f9;
-    border-radius: 8px;
+    padding: 2rem;
+    background: linear-gradient(135deg, #f9f9f9 60%, #e3e6ff 100%);
+    border-radius: 16px;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+    max-width: 500px;
+    margin: 2rem auto;
 }
 
 .lazy-loader .loading {
-    color: #888;
+    color: #1976d2;
+    font-weight: 600;
+    text-align: center;
+    font-size: 1.2rem;
 }

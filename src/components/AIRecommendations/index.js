@@ -1,6 +1,6 @@
 import React from 'react';
 import Cookies from "js-cookie"
-
+import {Link} from "react-router-dom"
 import "./index.css"
 import {
     useEffect, useState
@@ -36,7 +36,9 @@ const settings = {
             const [recommendations, setRec] = useState([]);
             const [loading, setLoading] = useState(true);
             const [error, setError] = useState("");
+            
 
+            
             useEffect(() => {
                 const fetchRecommendations = async () => {
                     setLoading(true);
@@ -65,12 +67,29 @@ const settings = {
                         const results = await fetch("https://apis.ccbp.in/products/", options);
                         if (!results.ok) throw new Error("Failed to fetch recommendations");
                         const data = await results.json();
+console.log(newIndex)
+                        if(newIndex===""){
+
+                            setRec(data)
+
+                        }
+                        else{
                         const filtered = data.products.filter((e) => e.image_url.includes(newIndex));
                         setRec(filtered);
+                        }
+
                     } catch (err) {
                         setError("Unable to load recommendations. Please try again later.");
+                        setRec()
+                   
                     } finally {
-                        setLoading(false);
+                           
+                           setLoading(false);
+
+                   
+
+                    
+                        
                     }
                 };
                 fetchRecommendations();
@@ -92,6 +111,7 @@ const settings = {
                                     <div style={{ padding: "2rem", textAlign: "center" }}>No recommendations yet.</div>
                                 ) : (
                                     recommendations.map((item) => (
+                                        <Link to={`/products/${item.id}`}  >
                                         <div key={item.id} className="recent-item">
                                             <img src={item.image_url} alt={item.title} width={120} height={120} />
                                             <div style={{ marginTop: "0.5rem", fontWeight: "bold" }}>{item.title}</div>
@@ -100,6 +120,8 @@ const settings = {
                                                 ₹{item.price}
                                             </div>
                                         </div>
+                                        </Link>
+
                                     ))
                                 )}
                             </Slider>

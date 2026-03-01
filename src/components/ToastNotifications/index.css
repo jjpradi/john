@@ -1,13 +1,51 @@
 .toast-notifications {
-    padding: 1rem;
-    background: #f9f9f9;
+    padding: 2rem;
+    background: linear-gradient(135deg, #f9f9f9 60%, #e3e6ff 100%);
+    border-radius: 16px;
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+    max-width: 500px;
+    margin: 2rem auto;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    align-items: center;
+}
+
+.toast-notifications button {
+    padding: 0.5rem 1.2rem;
     border-radius: 8px;
+    background: #1976d2;
+    color: #fff;
+    border: none;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.toast-notifications button:hover {
+    background: #388e3c;
 }
 
 .toast {
-    background: #007bff;
+    background: #1976d2;
     color: #fff;
-    padding: 0.5rem 1rem;
-    border-radius: 4px;
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
     margin-top: 0.5rem;
+    font-weight: 600;
+    box-shadow: 0 2px 8px #e3e6ff;
+    font-size: 1.1rem;
+    text-align: center;
+}
+
+.toast-success {
+    background: #388e3c;
+}
+
+.toast-warning {
+    background: #ffa726;
+}
+
+.toast-error {
+    background: #d32f2f;
 }
