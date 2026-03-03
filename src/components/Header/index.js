@@ -89,8 +89,10 @@ const Header = props => {
                 {renderCartItemsCount()}
               </Link>
 
-            </li>
-            <DarkModeToggle/>
+            </li  >
+          <li   className='nav-menu-item'>          <DarkModeToggle/>
+          </li>
+  
           </ul>
           <button
             type="button"

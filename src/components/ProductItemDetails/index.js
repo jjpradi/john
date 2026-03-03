@@ -209,11 +209,9 @@ return
         return (
           <div className="product-details-success-view">
             <div className="product-details-container">
-
-<ImageOptimizer   src={imageUrl} alt="product" >
-          <img   onMouseMove={this.onViewImage}      src={imageUrl} alt="product" className="product-image" />
-          </ImageOptimizer>
-
+<div className="image-container">     <img  style={{width: '100%', height: '100%'}}  onMouseMove={this.onViewImage}      src={imageUrl} alt="product"  />
+        </div>
+ 
           
 
           

@@ -1,9 +1,14 @@
 import React from 'react';
 import RecentlyViewed from '../RecentlyViewed';
 import Wishlist from '../Wishlist';
-
+import Cookies from "js-cookie"
 const OrderHistory = () => {
     // Dummy data for demonstration
+
+    const orderList=Cookies.get("orderedList")
+console.log(orderList)
+
+
     const orders = [
     
         { id: 1, date: '2026-02-01', total: 120 },

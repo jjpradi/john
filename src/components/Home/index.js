@@ -45,7 +45,7 @@ const Home = () => (
       </div>
 
       {/* Feature Showcase Section */}
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(350px, 1fr))', gap: '2rem', margin: '2rem 0' }}>
+      <div     style={{ display: 'grid',display:"flex",flexDirection:"column",  gridTemplateColumns: 'repeat(auto-fit, minmax(350px, 1fr))', gap: '2rem', margin: '2rem 0' }}>
         <div>
           <AIRecommendations />
         </div>

@@ -11,7 +11,7 @@ import ProtectedRoute from './components/ProtectedRoute'
 import CartContext from './context/CartContext'
 import OrderHistory from './components/OrderHistory'
 import InvoiceDownload from './components/InvoiceDownload'
-import AIRecommendations from './components/AIRecommendations'  
+import AIRecommendations from './components/AIRecommendations'
 import LazyLoader from './components/LazyLoader'
 import CodeSplit from './components/CodeSplit'
 import ImageOptimizer from './components/ImageOptimizer'
@@ -152,8 +152,8 @@ class App extends Component {
           <ProtectedRoute exact path="/orders" component={OrderHistory} />
           <ProtectedRoute exact path="/cart" component={Cart} />
           <Route path="/not-found" component={NotFound} />
-          
-             <Redirect to="not-found" />
+
+          <Redirect to="not-found" />
         </Switch>
       </CartContext.Provider>
     )

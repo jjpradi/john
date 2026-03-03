@@ -111,10 +111,15 @@ class AllProductsSection extends Component {
 
 
     const response = await fetch(apiUrl, options)
+    
     console.log(response)
+
     if (response.ok) {
+    
       const fetchedData = await response.json()
-console.log(fetchedData)
+
+      console.log(fetchedData)
+
       const updatedData = fetchedData.products.map(product => ({
 
         title: product.title,
@@ -126,13 +131,20 @@ console.log(fetchedData)
 
       }))
 
+
       this.setState({
 
         productsList: updatedData,
         apiStatus: apiStatusConstants.success,
 
       })
-    }
+    
+    
+    }  
+
+    
+
+
 
     else {
       this.setState({

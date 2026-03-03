@@ -1,6 +1,6 @@
 import { pre } from 'motion/react-client';
 import React, { useEffect, useState } from 'react';
-
+import "./index.css"
 const RecentlyViewed = () => {
     const [recent, setRecent] = useState([]);
 
@@ -13,12 +13,16 @@ const RecentlyViewed = () => {
 
     return (
         <div className="recently-viewed">
+            <ul >
             <h2>Recently Viewed Products</h2>
-            <ul>
+
+
                 {recent.map((item, id) => (
 
+                 
+                                     
 
-                    <li key={id}>
+                   <li  style={{listStyleType:"none"}}  key={id}>
                        <div className="recent-item">
                             <img src={item.imageUrl} alt={item.title} width={60} />
                             <span>{item.title}</span>
