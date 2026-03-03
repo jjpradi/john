@@ -45,34 +45,18 @@ const Home = () => (
       </div>
 
       {/* Feature Showcase Section */}
-      <div     style={{ display: 'grid',display:"flex",flexDirection:"column",  gridTemplateColumns: 'repeat(auto-fit, minmax(350px, 1fr))', gap: '2rem', margin: '2rem 0' }}>
+      <div     style={{ display: 'grid',display:"flex",flexDirection:"column",justifyContent:"center",alignItems:"center",  gridTemplateColumns: 'repeat(auto-fit, minmax(350px, 1fr))', gap: '2rem', margin: '2rem 0' }}>
         <div>
           <AIRecommendations />
         </div>
         <div>
           <RecentlyViewed />
         </div>
-        <div>
+        <div  style={{alignSelf:"flex-start "}}>
           <AIChatbot />
         </div>
-        <div>
-          <ImageOptimizer src="https://assets.ccbp.in/frontend/react-js/nxt-trendz-home-img.png" alt="Optimized Fashion" />
-        </div>
-        <div>
-          <Memoization />
-        </div>
-        <div>
-          <LazyLoader loader={() => import('../SkeletonLoader')} />
-        </div>
-        <div>
-          <ToastNotifications />
-        </div>
-        <div>
-          <Wishlist />
-        </div>
-        <div>
-          <SkeletonLoader />
-        </div>
+        
+        
       </div>
     </div>
   </>

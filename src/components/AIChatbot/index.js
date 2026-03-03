@@ -1,6 +1,6 @@
 
 import React, { useState } from 'react';
-
+import "./index.css"
 const API_URL = "/chatbot"; // Replace with your backend endpoint
 
 const AIChatbot = () => {
