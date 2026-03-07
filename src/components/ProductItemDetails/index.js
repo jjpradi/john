@@ -1,5 +1,5 @@
 import {Component} from 'react'
-import {Link} from 'react-router-dom'
+import {Link,useParams} from 'react-router-dom'
 import Cookies from 'js-cookie'
 import Loader from 'react-loader-spinner'
 import {BsPlusSquare, BsDashSquare} from 'react-icons/bs'
@@ -14,12 +14,20 @@ import Header from '../Header'
 import SimilarProductItem from '../SimilarProductItem'
 
 import './index.css'
+import ProductZoom from '../ProductZoom'
 
 const apiStatusConstants = {
   initial: 'INITIAL',
   success: 'SUCCESS',
   failure: 'FAILURE',
   inProgress: 'IN_PROGRESS',
+}
+
+
+function withParams(Component){
+
+  return props=> <Component  {...props} params={useParams()}  />
+
 }
 
 class ProductItemDetails extends Component {
@@ -53,13 +61,10 @@ class ProductItemDetails extends Component {
   })
 
   getProductData = async () => {
-    
-    const {match} = this.props
-    const {params} = match
-    
-    const {id} = params
 
-    
+
+    console.log(this.props)
+     const {id}=this.props.params 
     
 
 
@@ -141,7 +146,14 @@ class ProductItemDetails extends Component {
 
 
 
-  onViewImage=()=>{
+  onViewImage=(e)=>{
+
+    const { left, top, width, height } = e.target.getBoundingClientRect()
+
+  const x = ((e.pageX - left) / width) * 100
+  const y = ((e.pageY - top) / height) * 100
+
+  e.target.style.transformOrigin = `${x}% ${y}%`
 
     const {imageUrl}=this.state.productData
 this.setState({
@@ -209,16 +221,16 @@ return
         return (
           <div className="product-details-success-view">
             <div className="product-details-container">
-<div className="image-container">     <img  style={{width: '100%', height: '100%'}}  onMouseMove={this.onViewImage}      src={imageUrl} alt="product"  />
+ <div className="image-container">     <img    className='zoom-img' style={{width: '100%', height: '100%'}}  onMouseMove={this.onViewImage}      src={imageUrl} alt="product"  />
+        
         </div>
  
-          
 
           
           
            
             
-              <div className="product">
+                <div className="product">
                 <h1 className="product-name">{title}</h1>
                 <p className="price-details">Rs {price}/-</p>
                 <div className="rating-and-reviews-count">
@@ -312,4 +324,4 @@ return
   }
 }
 
-export default ProductItemDetails
+export default withParams(ProductItemDetails)

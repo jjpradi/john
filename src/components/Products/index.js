@@ -3,7 +3,7 @@ import PrimeDealsSection from '../PrimeDealsSection'
 
 
 
-
+import ProductViewer from '../ProductViewer'
 
 
 
@@ -22,7 +22,6 @@ const Products = () => (
       <PrimeDealsSection />
       
       <AllProductsSection />
-
     </div>
   </>
 )

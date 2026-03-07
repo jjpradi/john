@@ -1,5 +1,5 @@
 import { Component } from 'react'
-import { Route, Switch, Redirect } from 'react-router-dom'
+import { Route,Routes, Switch, Redirect } from 'react-router-dom'
 
 import LoginForm from './components/LoginForm'
 import Home from './components/Home'
@@ -23,6 +23,7 @@ import AIChatbot from './components/AIChatbot'
 import DarkModeToggle from './components/DarkModeToggle'
 import DebouncedSearch from './components/DebouncedSearch'
 import './App.css'
+import { BrowserRouter } from 'react-router-dom'
 
 class App extends Component {
   state = {
@@ -140,21 +141,37 @@ class App extends Component {
           decrementCartItemQuantity: this.decrementCartItemQuantity,
         }}
       >
-        <Switch>
-          <Route exact path="/login" component={LoginForm} />
-          <ProtectedRoute exact path="/" component={Home} />
-          <ProtectedRoute exact path="/products" component={Products} />
-          <ProtectedRoute
-            exact
-            path="/products/:id"
-            component={ProductItemDetails}
-          />
-          <ProtectedRoute exact path="/orders" component={OrderHistory} />
-          <ProtectedRoute exact path="/cart" component={Cart} />
-          <Route path="/not-found" component={NotFound} />
+        <BrowserRouter>
+          <Routes>
 
-          <Redirect to="not-found" />
-        </Switch>
+
+          <Route  path="/login" element={<LoginForm/>} />
+          <Route  path="/" element={
+            <ProtectedRoute>
+            <Home/>
+            </ProtectedRoute>
+            } 
+            
+            />
+          <Route path="/products" element={
+            <ProtectedRoute>            <Products/>    </ProtectedRoute>
+ } />
+          <Route
+            path="/products/:id"
+       element={<ProtectedRoute>
+
+<ProductItemDetails/>
+
+       </ProtectedRoute>}
+
+/>
+          <Route path="/orders" element={<ProtectedRoute>  <OrderHistory/> </ProtectedRoute>}/>
+          <Route  path="/cart" element={<ProtectedRoute> <Cart/> </ProtectedRoute>} />
+          <Route path="/not-found" element={<NotFound/>} />
+
+        </Routes>
+</BrowserRouter>
+
       </CartContext.Provider>
     )
   }

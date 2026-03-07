@@ -1,19 +1,24 @@
-import {Link, withRouter} from 'react-router-dom'
+import {Link,Navigate} from 'react-router-dom'
 import Cookies from 'js-cookie'
-
+import {useParams} from "react-router-dom"
 import CartContext from '../../context/CartContext'
 
 import './index.css'
 import DarkModeToggle from '../DarkModeToggle'
 
 const Header = props => {
+  
   const onClickLogout = () => {
-    const {history} = props
+      
     Cookies.remove('jwt_token')
-    history.replace('/login')
+
+    Navigate("/login")
+
   }
 
   const renderCartItemsCount = () => (
+
+    
     <CartContext.Consumer>
       {value => {
         const {cartList} = value
@@ -94,8 +99,11 @@ const Header = props => {
           </li>
   
           </ul>
+
+          
           <button
-            type="button"
+          
+          type="button"
             className="logout-desktop-btn"
             onClick={onClickLogout}
           >
@@ -140,4 +148,4 @@ const Header = props => {
   )
 }
 
-export default withRouter(Header)
+export default Header

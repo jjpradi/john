@@ -106,7 +106,9 @@ class AllProductsSection extends Component {
       headers: {
         Authorization: `Bearer ${jwtToken}`,
       },
+      
       method: 'GET',
+      
     }
 
 

@@ -4,34 +4,50 @@ import "./index.css"
 const API_URL = "/chatbot"; // Replace with your backend endpoint
 
 const AIChatbot = () => {
+    
+    
     const [messages, setMessages] = useState([]);
     const [input, setInput] = useState('');
     const [loading, setLoading] = useState(false);
 
     const handleSend = async () => {
+
         if (!input.trim()) return;
+        
         const userMsg = { text: input, sender: 'user' };
+        
         setMessages((prev) => [...prev, userMsg]);
+
         setInput('');
+        
         setLoading(true);
+        
         try {
+    
             // Fetch bot response from backend
             const res = await fetch(API_URL, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ message: input })
+        
             });
             const data = await res.json();
             setMessages((prev) => [...prev, { text: data.reply, sender: 'bot' }]);
-        } catch {
-            setMessages((prev) => [...prev, { text: "Sorry, something went wrong.", sender: 'bot' }]);
         }
+         catch {
+        
+            setMessages((prev) => [...prev, { text: "Sorry, something went wrong.", sender: 'bot' }]);
+        
+        }
+        
         setLoading(false);
+    
     };
 
     return (
+        
         <div className="ai-chatbot">
-            <h2>AI Chatbot</h2>
+            <h2>AI Chatbot </h2>
             <div className="chat-window">
                 {messages.map((msg, idx) => (
                     <div key={idx} className={msg.sender + " message-bubble"}>{msg.text}</div>

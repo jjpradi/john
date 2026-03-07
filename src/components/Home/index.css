@@ -9,7 +9,31 @@
   width: 90%;
   max-width: 1110px;
 }
+.trending-section{
 
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+width: 60vw;
+
+
+
+}
+
+.electronics-section{
+
+
+  display: flex;
+    flex-direction: column;
+  
+    background: #fff;
+    border-radius: 12px;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.07);
+    padding: 1.5rem 1rem;
+    margin: 1rem 0.5rem;
+    transition: box-shadow 0.2s;
+}
 @media screen and (min-width: 768px) {
   .home-container {
     flex-direction: row;

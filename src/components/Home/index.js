@@ -11,12 +11,50 @@ import LazyLoader from '../LazyLoader';
 import ToastNotifications from '../ToastNotifications';
 import Wishlist from '../Wishlist';
 import SkeletonLoader from '../SkeletonLoader';
+import ProductViewer from '../ProductViewer';
+
+
+import Trending from "../Trending"
+
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
+
+const settings = {
+      dots: true,
+    infinite: true,
+    speed: 500,
+
+    autoplay:true,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    responsive: [
+        {
+            breakpoint: 768,
+            settings: {
+                slidesToShow: 1,
+            },
+        },
+        {
+            breakpoint: 1024,
+            settings: {
+                slidesToShow: 2,
+            },
+        },
+    ],
+};
+
 
 const Home = () => (
   <>
     <Header />
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem', justifyContent: 'space-around' }}>
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem', justifyContent: 'space-around'
+ ,color:"lightBlue",  
+     }}>
+
+
       <div className="home-container">
+
         <div className="home-content">
           <h1 className="home-heading">Clothes That Get YOU Noticed</h1>
           <img
@@ -44,16 +82,60 @@ const Home = () => (
         />
       </div>
 
+      <div  className='electronics-section'   style={{ marginLeft:"15vw",marginRight:"15vw" }}
+>
+
+    <h1>
+
+Electronics& Gadgets
+
+
+    </h1>
+     <Slider  style={{color:"grey"
+
+
+     }}  {...settings}>
+  
+     <ProductViewer name="newphone"    style={{ width:"30vw"}}
+     />
+     
+
+  
+
+     <ProductViewer name="product"  style={{ width:"30vw"}}
+     />
+  
+  
+     <ProductViewer name="watch"  style={{ width:"30vw"}}
+     />
+    
+      
+     <ProductViewer name="pod"    style={{width:"30vw"}}/>
+     <ProductViewer name="phone1"  style={{width:"30vw"}}/>
+
+</Slider>
+
+      </div>
+
+<div  className='trending-section'        style={{marginLeft:"17vw"}}  >
+
+          <Trending    />
+</div>
+
+
       {/* Feature Showcase Section */}
-      <div     style={{ display: 'grid',display:"flex",flexDirection:"column",justifyContent:"center",alignItems:"center",  gridTemplateColumns: 'repeat(auto-fit, minmax(350px, 1fr))', gap: '2rem', margin: '2rem 0' }}>
+      <div       style={{ display: 'grid',display:"flex",flexDirection:"column",justifyContent:"center",alignItems:"center",  gridTemplateColumns: 'repeat(auto-fit, minmax(350px, 1fr))', gap: '2rem', margin: '2rem 0' }}>
         <div>
           <AIRecommendations />
         </div>
         <div>
           <RecentlyViewed />
         </div>
+        
         <div  style={{alignSelf:"flex-start "}}>
+        
           <AIChatbot />
+        
         </div>
         
         
