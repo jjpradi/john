@@ -126,6 +126,9 @@ class App extends Component {
     const { cartList, totalCartAmount, count } = this.state
     console.log(totalCartAmount)
     return (
+
+
+      
       <CartContext.Provider
         value={{
           cartList,
