@@ -15,7 +15,9 @@ import './index.css'
 
 
 const Products = () => (
+ 
   <>
+  
     <Header />
     <div className="product-sections">
       
@@ -23,7 +25,9 @@ const Products = () => (
       
       <AllProductsSection />
     </div>
+
   </>
+
 )
 
 export default Products

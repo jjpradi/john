@@ -1,12 +1,21 @@
+
+import Header from "../Header"
 import React from 'react';
 import RecentlyViewed from '../RecentlyViewed';
 import Wishlist from '../Wishlist';
 import Cookies from "js-cookie"
+
 const OrderHistory = () => {
+
     // Dummy data for demonstration
+    
 
     const orderList=Cookies.get("orderedList")
-console.log(orderList)
+    
+    
+
+
+    console.log(orderList)
 
 
     const orders = [
@@ -19,7 +28,7 @@ console.log(orderList)
 
     return (
         <div className="order-history">
-
+<Header/>
             <Wishlist/>
             <h2>Order History</h2>
             <RecentlyViewed/>

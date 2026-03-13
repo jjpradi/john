@@ -33,16 +33,23 @@ const settings = {
 };
 
         const AIRecommendations = () => {
+            
             const [recommendations, setRec] = useState([]);
+            
             const [loading, setLoading] = useState(true);
+            
             const [error, setError] = useState("");
             
 
             
             useEffect(() => {
+                
                 const fetchRecommendations = async () => {
+                    
                     setLoading(true);
+                    
                     setError("");
+                    
                     try {
                         const lastItem = JSON.parse(localStorage.getItem("recentlyViewed"));
                         if (!lastItem || !lastItem.imageUrl) {
@@ -57,17 +64,25 @@ const settings = {
                             setLoading(false);
                             return;
                         }
+                        
                         const jwtToken = Cookies.get("jwt_token");
+                        
                         const options = {
                             method: "GET",
                             headers: {
                                 Authorization: `Bearer ${jwtToken}`,
                             },
                         };
+                        
                         const results = await fetch("https://apis.ccbp.in/products/", options);
+                        
                         if (!results.ok) throw new Error("Failed to fetch recommendations");
+                        
                         const data = await results.json();
-console.log(newIndex)
+
+                        console.log(newIndex)
+
+
                         if(newIndex===""){
 
                             setRec(data)

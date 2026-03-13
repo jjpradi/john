@@ -46,20 +46,37 @@ var scene
 
 
   }
+
+if(props.name=="iphone13"){
+
+   var {scene}  = useGLTF("/models/samsung_phone.glb")   
+
+
+
+
+  }
+
   let sc
    
 
   switch(props.name){
+
 case "product":
   sc=15
-case "phone":
+
+  case "phone":
   sc=5
-  case "watch":
-    sc=0.4
+
+case "watch":
+    sc=0.1
     
+case "iphone13":
+      sc=-3.3
+
 case "newphone":
   sc=12
-  case "pod":
+  
+case "pod":
     
   sc=0.3
 

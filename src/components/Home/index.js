@@ -2,6 +2,8 @@
 import { Link } from 'react-router-dom';
 import Header from '../Header';
 import './index.css';
+
+import {useNavigate} from"react-router-dom"
 import AIRecommendations from '../AIRecommendations';
 import RecentlyViewed from '../RecentlyViewed';
 import AIChatbot from '../AIChatbot';
@@ -45,7 +47,17 @@ const settings = {
 };
 
 
-const Home = () => (
+const Home = () => {
+const navigate=useNavigate()
+
+const onHome=()=>{
+
+navigate("/products")
+
+
+}
+
+  return(
   <>
     <Header />
     <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem', justifyContent: 'space-around'
@@ -85,9 +97,9 @@ const Home = () => (
       <div  className='electronics-section'   style={{ marginLeft:"15vw",marginRight:"15vw" }}
 >
 
-    <h1>
+    <h1  style={{marginLeft:"21vw",color:"#0967d2"}}>
 
-Electronics& Gadgets
+Electronics & Gadgets
 
 
     </h1>
@@ -96,22 +108,26 @@ Electronics& Gadgets
 
      }}  {...settings}>
   
-     <ProductViewer name="newphone"    style={{ width:"30vw"}}
+     <ProductViewer   onClick={onHome} name="newphone"    style={{ width:"30vw"}}
      />
      
 
   
 
-     <ProductViewer name="product"  style={{ width:"30vw"}}
+   
+    <ProductViewer   onClick={onHome} name="iphone13"    style={{ width:"30vw"}}
      />
+     
+
   
-  
-     <ProductViewer name="watch"  style={{ width:"30vw"}}
+
+   
+     <ProductViewer name="watch"     onClick={onHome} style={{ width:"10vw"}}
      />
     
       
-     <ProductViewer name="pod"    style={{width:"30vw"}}/>
-     <ProductViewer name="phone1"  style={{width:"30vw"}}/>
+     <ProductViewer      onClick={onHome} name="pod"    style={{width:"30vw"}}/>
+     <ProductViewer name="phone1"     onClick={onHome} style={{width:"30vw"}}/>
 
 </Slider>
 
@@ -142,6 +158,5 @@ Electronics& Gadgets
       </div>
     </div>
   </>
-);
-
+)}
 export default Home;

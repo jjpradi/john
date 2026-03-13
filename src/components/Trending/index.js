@@ -1,5 +1,7 @@
 
 import Product360 from "../Product360"
+
+import {useNavigate,Navigate} from "react-router-dom"
 import {useEffect,useState}  from "react"
 import "./index.css"
 import Slider from "react-slick";
@@ -33,7 +35,10 @@ const settings = {
 
 
 const Trending=()=>{
-const[product,setProducts]=useState([])
+    
+    
+    
+    const[product,setProducts]=useState([])
 
 useEffect(() => {
 const jwtToken=Cookies.get("jwt_token")
@@ -64,19 +69,30 @@ headers:{
 
 
 
+    const onHome=()=>{
+
+ const navigate=useNavigate()
+  
+ 
+ this.props.replace("/products")
+
+
+    }
 
 
 return (
 
-<div  className="fitness-product"   style={{height:"56vh",marginLeft:"25vw",marginLeft:"15vw",minHeight:"23vh"}}   >
+<div  className="fitness-product"   style={{padding:"33px",backgroundColor:"#222",height:"56vh",marginLeft:"25vw",marginLeft:"15vw",minHeight:"23vh"}}>
+
 <h1>Sports & Fitness</h1>
-<Slider    {...settings}   style={{width:"43vw",minHeight:"37vh"}}   >
 
-<img  className="img"  style={{  margin:"34px",   minHeight:"5vh"}} src="https://i.ibb.co/35KHhwpY/dumbell-3.jpg"/>
+<Slider     {...settings}   style={{width:"43vw",minHeight:"37vh"}}   >
 
-<img  className="img"     style={{minHeight:"5vh",width:"5vw",fontSize:"55px"}} src="https://i.ibb.co/CKx72ZBS/dumbell-2.jpg"/>
-<img  className="img"    style={{minHeight:"5vh",width:"5vw"}}  src="https://i.ibb.co/HfVycRLK/dumbell-1.jpg"/>
-<img  className="img"   style={{minHeight:"5vh",width:"5vw"}}   src="https://i.ibb.co/dn0k0rQ/dumbell-4.jpg"/>
+<img    onClick={onHome}  className="img"  style={{  margin:"34px",   minHeight:"5vh"}} src="https://i.ibb.co/35KHhwpY/dumbell-3.jpg"/>
+
+<img  className="img"  onClick={onHome}    style={{minHeight:"5vh",width:"5vw",fontSize:"55px"}} src="https://i.ibb.co/CKx72ZBS/dumbell-2.jpg"/>
+<img  className="img"      onClick={onHome}    style={{minHeight:"5vh",width:"5vw"}}  src="https://i.ibb.co/HfVycRLK/dumbell-1.jpg"/>
+<img  className="img"       onClick={onHome}   style={{minHeight:"5vh",width:"5vw"}}   src="https://i.ibb.co/dn0k0rQ/dumbell-4.jpg"/>
 
 
 

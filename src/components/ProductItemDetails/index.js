@@ -1,7 +1,7 @@
 import {Component} from 'react'
 import {Link,useParams} from 'react-router-dom'
 import Cookies from 'js-cookie'
-import Loader from 'react-loader-spinner'
+import {ThreeDots} from 'react-loader-spinner'
 import {BsPlusSquare, BsDashSquare} from 'react-icons/bs'
 import ImageOptimizer  from '../ImageOptimizer'
 import CartContext from '../../context/CartContext'
@@ -82,6 +82,7 @@ class ProductItemDetails extends Component {
       },
       method: 'GET',
     }
+
     const response = await fetch(apiUrl, options)
     if (response.ok) {
       const fetchedData = await response.json()
@@ -116,9 +117,16 @@ class ProductItemDetails extends Component {
 
   renderLoadingView = () => (
     <div className="products-details-loader-container" data-testid="loader">
-      <Loader type="ThreeDots" color="#0b69ff" height="50" width="50" />
+      <ThreeDots  color="#0b69ff" height="50" width="50" />
     </div>
   )
+  changeProduct=(id)=>{
+
+    console.log(id)
+this.getProductData()
+
+
+  }
 
   renderFailureView = () => (
     <div className="product-details-error-view-container">
@@ -220,7 +228,9 @@ return
 
         return (
           <div className="product-details-success-view">
+
             <div className="product-details-container">
+ 
  <div className="image-container">     <img    className='zoom-img' style={{width: '100%', height: '100%'}}  onMouseMove={this.onViewImage}      src={imageUrl} alt="product"  />
         
         </div>
@@ -286,6 +296,8 @@ return
             <ul className="similar-products-list">
               {similarProductsData.map(eachSimilarProduct => (
                 <SimilarProductItem
+
+                changeProduct={this.changeProduct}
                   productDetails={eachSimilarProduct}
                   key={eachSimilarProduct.id}
                 />
