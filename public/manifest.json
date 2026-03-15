@@ -16,7 +16,7 @@
       "type": "image/png"
     }
   ],
-  "start_url": "/john",
+  "start_url": "/",
   "display": "standalone",
   "theme_color": "#0b69ff",
   "background_color": "#ffffff"
