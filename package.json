@@ -1,4 +1,7 @@
 {
+
+
+  "homepage": "https://jjpradi.github.io/e-com",
   "name": "nxt-trendz-cart-features",
   "private": true,
   "version": "1.0.0",
@@ -44,6 +47,8 @@
     "react-scripts": "5.0.1"
   },
   "scripts": {
+     "predeploy": "npm run build",
+  "deploy": "gh-pages -d build",
     "start": "react-scripts start",
     "build": "NODE_OPTIONS=--openssl-legacy-provider react-scripts build",
     "test": "react-scripts test",
