@@ -106,7 +106,10 @@
     "stats-gl": "4.1.0",
 
 
-    "three": "0.183.2"
+    "three": "0.183.2",
+
+
+    "workbox-webpack-plugin": "7.4.0"
 
 
   },
