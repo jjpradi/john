@@ -1,36 +1,56 @@
+
+
+
+
 {
+  
   "short_name": "NxtTrendz",
+  
   "name": "NxtTrendz E-Commerce",
-  "icons": [
+  
+  "id":"/",
+  
+  "icons":
+
+  
+
+  
+  [
+    
     {
+    
       "src": "img/favicon.ico",
-      "sizes": "64x64 32x32 24x24 16x16",
+      "sizes": "64x64",
       "type": "image/x-icon"
+    
     },
     {
+      
       "src": "img/logo192.png",
+      
       "type": "image/png",
+
       "sizes": "192x192"
     },
     {
+    
       "src": "img/logo512.png",
       "type": "image/png",
       "sizes": "512x512"
+    
+    }
+
+  ],
+  
+   
+  "protocol_handlers": [
+    {
+      "protocol": "web+nxttrendz",
+      "url": "/?url=%s"
     }
   ],
-  "screenshots": [
-    {
-      "src": "screenshot-mobile.png",
-      "sizes": "540x720",
-      "type": "image/png"
-    },
-    {
-      "src": "https://i.ibb.co/nqrG3VF9/pexels-rdne-8611382.jpg",
-      "sizes": "1280x720",
-      "type": "image/png",
-      "form_factor": "wide"
-    }
-  ],
+
+
   
   "start_url": ".",
   "display": "standalone",
