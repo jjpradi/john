@@ -16,9 +16,9 @@
       "type": "image/png"
     }
   ],
-  "start_url": "/e-com",
+  "start_url": "/john",
   "display": "standalone",
   "theme_color": "#0b69ff",
   "background_color": "#ffffff"
-  
+
 }
