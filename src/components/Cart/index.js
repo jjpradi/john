@@ -45,7 +45,42 @@ const Cart = () => {
 
   }
 
+const handlePayment = async () => {
 
+const res = await fetch("http://localhost:5000/create-order",{
+method:"POST",
+headers:{"Content-Type":"application/json"},
+body:JSON.stringify({amount:500})
+})
+
+const data = await res.json()
+
+const options = {
+key:"YOUR_KEY_ID",
+amount:data.amount,
+currency:"INR",
+name:"My E-Commerce",
+description:"Purchase",
+order_id:data.id,
+
+handler: async function(response){
+
+await fetch("http://localhost:5000/verify-payment",{
+method:"POST",
+headers:{"Content-Type":"application/json"},
+body:JSON.stringify(response)
+})
+
+alert("Payment Successful")
+
+}
+
+}
+
+const paymentObject = new window.Razorpay(options)
+paymentObject.open()
+
+}
 
   const overlayStyle = {
     background: 'rgba(0, 0, 0, 0.5)',
@@ -135,7 +170,7 @@ const Cart = () => {
                             <input type="radio" name="pay" value="Cash On Delivery" checked={method === 'Cash On Delivery'} onChange={handlePaymentChange} /> Cash On Delivery
                           </label>
                         </div>
-                        <button className="confirm-button" onClick={handleConfirmOrder}>
+                        <button className="confirm-button" onClick={handlePayment}>
                           Confirm Order
                         </button>
 

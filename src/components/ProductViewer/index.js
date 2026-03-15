@@ -6,16 +6,19 @@ import { OrbitControls, useGLTF } from "@react-three/drei"
 
 function ProductModel(props) {
   console.log(props)
-console.log(props.name)
+
+  console.log(props.name)
+
 var scene
 
   if(props.name==="pod"){
    
-    var {scene}  = useGLTF("/models/air_pods.glb")   
+    var {scene}  = useGLTF("/john/models/air_pods.glb")   
+  
   }
   if(props.name==="phone1"){
   
-   var {scene}  = useGLTF("/models/barbeador_trimmer.glb")
+   var {scene}  = useGLTF("/john/models/barbeador_trimmer.glb")
 
 
   }
@@ -25,13 +28,15 @@ var scene
 
   if(props.name=="watch"){
 
-   var {scene}  = useGLTF("/models/montana_watch__free_model.glb")   
+
+   var {scene}  = useGLTF("/john/models/montana_watch__free_model.glb")   
 
 
   }
   if(props.name=="newphone"){
 
-   var {scene}  = useGLTF("/models/apple_iphone_based_mobile_phone.glb")   
+
+   var {scene}  = useGLTF("/john/models/apple_iphone_based_mobile_phone.glb")   
 
 
 
@@ -40,16 +45,19 @@ var scene
   
     if(props.name=="product"){
 
-   var {scene}  = useGLTF("/models/auriculares_b_ose_quiet_comfort_ultra_2models.glb")   
+   var {scene}  = useGLTF("/john/models/auriculares_b_ose_quiet_comfort_ultra_2models.glb")   
 
-
+   
 
 
   }
 
+
+
+
 if(props.name=="iphone13"){
 
-   var {scene}  = useGLTF("/models/samsung_phone.glb")   
+   var {scene}  = useGLTF("/john/models/samsung_phone.glb")   
 
 
 
@@ -95,6 +103,7 @@ case "pod":
        ]}
     />
 
+
   )
 
 }
@@ -127,3 +136,5 @@ export default function ProductViewer(props) {
     </Canvas>
   )
 }
+
+
