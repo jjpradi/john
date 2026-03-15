@@ -23,7 +23,7 @@ import AIChatbot from './components/AIChatbot'
 import DarkModeToggle from './components/DarkModeToggle'
 import DebouncedSearch from './components/DebouncedSearch'
 import './App.css'
-import { BrowserRouter } from 'react-router-dom'
+import { HashRouter } from 'react-router-dom'
 
 class App extends Component {
   state = {
@@ -144,7 +144,6 @@ class App extends Component {
           decrementCartItemQuantity: this.decrementCartItemQuantity,
         }}
       >
-        <BrowserRouter>
           <Routes>
 
 
@@ -173,7 +172,7 @@ class App extends Component {
           <Route path="/not-found" element={<NotFound/>} />
 
         </Routes>
-</BrowserRouter>
+
 
       </CartContext.Provider>
     )
