@@ -49,7 +49,12 @@ const settings = {
 
 const Home = () => {
 const navigate=useNavigate()
+const onChangeToProducts=()=>{
 
+
+  const navigate=useNavigate()
+  navigate("/products")
+}
 const onHome=()=>{
 
 navigate("/products")
@@ -94,10 +99,10 @@ navigate("/products")
         />
       </div>
 
-      <div  className='electronics-section'   style={{ marginLeft:"15vw",marginRight:"15vw" }}
+      <div   className='electronics-section'   style={{ marginLeft:"15vw",marginRight:"15vw",padding:"33px" }}
 >
 
-    <h1  style={{marginLeft:"21vw",color:"#0967d2"}}>
+    <h1  style={{marginLeft:"21vw"}}>
 
 Electronics & Gadgets
 
@@ -107,28 +112,34 @@ Electronics & Gadgets
 
 
      }}  {...settings}>
-  
-     <ProductViewer   onClick={onHome} name="newphone"    style={{ width:"30vw"}}
+  <Link to="/products" >     <ProductViewer   onClick={onHome} name="newphone"    style={{ width:"30vw"}}
      />
-     
+     </Link>
+
 
   
 
-   
+    <Link  to="/products">
+
     <ProductViewer   onClick={onHome} name="iphone13"    style={{ width:"30vw"}}
      />
+     </Link>
      
 
   
-
+<Link to ="/products">
    
      <ProductViewer name="watch"     onClick={onHome} style={{ width:"10vw"}}
      />
-    
-      
+    </Link>
+    <Link to="/products">      
      <ProductViewer      onClick={onHome} name="pod"    style={{width:"30vw"}}/>
-     <ProductViewer name="phone1"     onClick={onHome} style={{width:"30vw"}}/>
+     </Link>
 
+<Link to="/products">     
+     
+     <ProductViewer name="phone1"     onClick={onHome} style={{width:"30vw"}}/>
+</Link>
 </Slider>
 
       </div>
@@ -141,6 +152,8 @@ Electronics & Gadgets
 
       {/* Feature Showcase Section */}
       <div       style={{ display: 'grid',display:"flex",flexDirection:"column",justifyContent:"center",alignItems:"center",  gridTemplateColumns: 'repeat(auto-fit, minmax(350px, 1fr))', gap: '2rem', margin: '2rem 0' }}>
+        
+        
         <div>
           <AIRecommendations />
         </div>

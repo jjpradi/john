@@ -16,6 +16,7 @@ var scene
     var {scene}  = useGLTF("/models/air_pods.glb")   
   
   }
+
   if(props.name==="phone1"){
   
    var {scene}  = useGLTF("/models/barbeador_trimmer.glb")
@@ -33,19 +34,29 @@ var scene
 
 
   }
+
+
   if(props.name=="newphone"){
 
 
-   var {scene}  = useGLTF("/models/apple_iphone_based_mobile_phone.glb")   
 
+   
+    var {scene}  = useGLTF("/models/apple_iphone_based_mobile_phone.glb")   
 
+    
 
 
   }
+
   
     if(props.name=="product"){
 
-   var {scene}  = useGLTF("/models/auriculares_b_ose_quiet_comfort_ultra_2models.glb")   
+   var {scene}  = useGLTF ("/models/auriculares_b_ose_quiet_comfort_ultra_2models.glb")  
+   
+
+   
+   
+
 
    
 

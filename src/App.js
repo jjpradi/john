@@ -123,14 +123,17 @@ class App extends Component {
   }
 
   render() {
+
     const { cartList, totalCartAmount, count } = this.state
     console.log(totalCartAmount)
     return (
 
-
+      
       
       <CartContext.Provider
-        value={{
+        
+      value={{
+
           cartList,
           totalCartAmount,
           count,
@@ -139,9 +142,13 @@ class App extends Component {
           onRemoval: this.onRemoval,
 
           addCartItem: this.addCartItem,
+    
           removeCartItem: this.removeCartItem,
+    
           incrementCartItemQuantity: this.incrementCartItemQuantity,
+    
           decrementCartItemQuantity: this.decrementCartItemQuantity,
+    
         }}
       >
           <Routes>
