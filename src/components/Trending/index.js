@@ -34,11 +34,19 @@ const settings = {
 
 
 
-const Trending=()=>{
+const Trending=(props)=>{
     
     
     
     const[product,setProducts]=useState([])
+
+
+
+const onChangeRoute=()=>{
+
+
+props.replace("/products")
+}
 
 useEffect(() => {
 const jwtToken=Cookies.get("jwt_token")
@@ -86,9 +94,9 @@ return (
 
 <h1>Sports & Fitness</h1>
 
-<Slider     {...settings}   style={{width:"43vw",minHeight:"37vh"}}   >
+<Slider       {...settings}   style={{width:"43vw",minHeight:"37vh"}}   >
 
-<img    onClick={onHome}  className="img"  style={{  margin:"34px",   minHeight:"5vh"}} src="https://i.ibb.co/35KHhwpY/dumbell-3.jpg"/>
+<img onClick={onChangeRoute}     className="img"  style={{  margin:"34px",   minHeight:"5vh"}} src="https://i.ibb.co/35KHhwpY/dumbell-3.jpg"/>
 
 <img  className="img"  onClick={onHome}    style={{minHeight:"5vh",width:"5vw",fontSize:"55px"}} src="https://i.ibb.co/CKx72ZBS/dumbell-2.jpg"/>
 <img  className="img"      onClick={onHome}    style={{minHeight:"5vh",width:"5vw"}}  src="https://i.ibb.co/HfVycRLK/dumbell-1.jpg"/>

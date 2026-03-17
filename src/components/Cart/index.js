@@ -56,11 +56,16 @@ body:JSON.stringify({amount:500})
 const data = await res.json()
 
 const options = {
-key:"YOUR_KEY_ID",
+key:"rzp_test_SS7LhR6CQXXuvA",
+
 amount:data.amount,
+
 currency:"INR",
+
 name:"My E-Commerce",
+
 description:"Purchase",
+
 order_id:data.id,
 
 handler: async function(response){
