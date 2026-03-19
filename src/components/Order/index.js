@@ -1,8 +1,5 @@
-import Wishlist from "../Wishlist"
+import Wishlist from '../Wishlist'
 
-const Order = () => <div >
-
-
-</div>
+const Order = () => <div></div>
 
 export default Order

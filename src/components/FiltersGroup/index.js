@@ -84,16 +84,15 @@ const FiltersGroup = props => {
     const {searchInput} = props
     return (
       <div className="search-input-container">
-      <DebouncedSearch>
-        <input
-          value={searchInput}
-          type="search"
-          className="search-input"
-          placeholder="Search"
-          onChange={onChangeSearchInput}
-          onKeyDown={onEnterSearchInput}
-        />
-
+        <DebouncedSearch>
+          <input
+            value={searchInput}
+            type="search"
+            className="search-input"
+            placeholder="Search"
+            onChange={onChangeSearchInput}
+            onKeyDown={onEnterSearchInput}
+          />
         </DebouncedSearch>
         <BsSearch className="search-icon" />
       </div>

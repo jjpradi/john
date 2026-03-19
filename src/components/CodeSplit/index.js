@@ -1,11 +1,11 @@
-import React, { lazy, Suspense } from 'react';
+import React, {lazy, Suspense} from 'react'
 
-const LazyComponent = lazy(() => import('../AIRecommendations'));
+const LazyComponent = lazy(() => import('../AIRecommendations'))
 
 const CodeSplit = () => (
-    <Suspense fallback={<div>Loading...</div>}>
-        <LazyComponent />
-    </Suspense>
-);
+  <Suspense fallback={<div>Loading...</div>}>
+    <LazyComponent />
+  </Suspense>
+)
 
-export default CodeSplit;
+export default CodeSplit

@@ -1,16 +1,21 @@
-import { Link } from 'react-router-dom'
+import {Link} from 'react-router-dom'
 import ImageOptimizer from '../ImageOptimizer'
 import './index.css'
 
 const ProductCard = props => {
-  const { productData } = props
-  const { title, brand, imageUrl, rating, price, id } = productData
+  const {productData} = props
+  const {title, brand, imageUrl, rating, price, id} = productData
 
   return (
     <li className="product-item">
       <Link to={`/products/${id}`} className="link-item">
         {/* Use ImageOptimizer for hover effect */}
- <ImageOptimizer  style={{height:"5vh",width:"15vw"}} src={imageUrl} alt="product" />        <h1 className="title">{title}</h1>
+        <ImageOptimizer
+          style={{height: '5vh', width: '15vw'}}
+          src={imageUrl}
+          alt="product"
+        />{' '}
+        <h1 className="title">{title}</h1>
         <p className="brand">by {brand}</p>
         <div className="product-details">
           <p className="price">Rs {price}/-</p>

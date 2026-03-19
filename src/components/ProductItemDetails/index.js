@@ -1,14 +1,10 @@
 import {Component} from 'react'
-import {Link,useParams} from 'react-router-dom'
+import {Link, useParams} from 'react-router-dom'
 import Cookies from 'js-cookie'
 import {ThreeDots} from 'react-loader-spinner'
 import {BsPlusSquare, BsDashSquare} from 'react-icons/bs'
-import ImageOptimizer  from '../ImageOptimizer'
+import ImageOptimizer from '../ImageOptimizer'
 import CartContext from '../../context/CartContext'
-
-
-
-
 
 import Header from '../Header'
 import SimilarProductItem from '../SimilarProductItem'
@@ -23,11 +19,8 @@ const apiStatusConstants = {
   inProgress: 'IN_PROGRESS',
 }
 
-
-function withParams(Component){
-
-  return props=> <Component  {...props} params={useParams()}  />
-
+function withParams(Component) {
+  return props => <Component {...props} params={useParams()} />
 }
 
 class ProductItemDetails extends Component {
@@ -36,17 +29,14 @@ class ProductItemDetails extends Component {
     similarProductsData: [],
     apiStatus: apiStatusConstants.initial,
     quantity: 1,
-    showOptimizer:false
+    showOptimizer: false,
   }
-
-
 
   componentDidMount() {
     this.getProductData()
   }
 
   getFormattedData = data => ({
-
     availability: data.availability,
     brand: data.brand,
     description: data.description,
@@ -56,20 +46,11 @@ class ProductItemDetails extends Component {
     rating: data.rating,
     title: data.title,
     totalReviews: data.total_reviews,
-
-
   })
 
   getProductData = async () => {
-
-
     console.log(this.props)
-     const {id}=this.props.params 
-    
-
-
-    
-
+    const {id} = this.props.params
 
     this.setState({
       apiStatus: apiStatusConstants.inProgress,
@@ -86,22 +67,15 @@ class ProductItemDetails extends Component {
     const response = await fetch(apiUrl, options)
     if (response.ok) {
       const fetchedData = await response.json()
-      
+
       const updatedData = this.getFormattedData(fetchedData)
-     
 
-      localStorage.setItem('recentlyViewed',JSON.stringify(updatedData))
-
+      localStorage.setItem('recentlyViewed', JSON.stringify(updatedData))
 
       const updatedSimilarProductsData = fetchedData.similar_products.map(
-     
-     
         eachSimilarProduct => this.getFormattedData(eachSimilarProduct),
-     
-
-        
       )
-     
+
       this.setState({
         productData: updatedData,
         similarProductsData: updatedSimilarProductsData,
@@ -117,15 +91,12 @@ class ProductItemDetails extends Component {
 
   renderLoadingView = () => (
     <div className="products-details-loader-container" data-testid="loader">
-      <ThreeDots  color="#0b69ff" height="50" width="50" />
+      <ThreeDots color="#0b69ff" height="50" width="50" />
     </div>
   )
-  changeProduct=(id)=>{
-
+  changeProduct = id => {
     console.log(id)
-this.getProductData()
-
-
+    this.getProductData()
   }
 
   renderFailureView = () => (
@@ -144,7 +115,6 @@ this.getProductData()
     </div>
   )
 
-  
   onDecrementQuantity = () => {
     const {quantity} = this.state
     if (quantity > 1) {
@@ -152,56 +122,39 @@ this.getProductData()
     }
   }
 
+  onViewImage = e => {
+    const {left, top, width, height} = e.target.getBoundingClientRect()
 
+    const x = ((e.pageX - left) / width) * 100
+    const y = ((e.pageY - top) / height) * 100
 
-  onViewImage=(e)=>{
+    e.target.style.transformOrigin = `${x}% ${y}%`
 
-    const { left, top, width, height } = e.target.getBoundingClientRect()
+    const {imageUrl} = this.state.productData
+    this.setState({
+      showOptimizer: true,
+    })
 
-  const x = ((e.pageX - left) / width) * 100
-  const y = ((e.pageY - top) / height) * 100
+    console.log(imageUrl)
 
-  e.target.style.transformOrigin = `${x}% ${y}%`
-
-    const {imageUrl}=this.state.productData
-this.setState({
-
-showOptimizer:true
-
-})
-
-console.log(imageUrl)
-
-
-
-return   
-       
-
-
-<ImageOptimizer           src={imageUrl} alt="product"   />
-
-
-
-
-
-
-      }
-
-
-  
+    return
+    ;<ImageOptimizer src={imageUrl} alt="product" />
+  }
 
   onIncrementQuantity = () => {
     this.setState(prevState => ({quantity: prevState.quantity + 1}))
   }
 
   renderProductDetailsView = () => (
-  
-  
-  <CartContext.Consumer>
-      
+    <CartContext.Consumer>
       {value => {
         const {incrementCartItemQuantity, decrementCartItemQuantity} = value
-        const {productData, quantity, similarProductsData,showOptimizer} = this.state
+        const {
+          productData,
+          quantity,
+          similarProductsData,
+          showOptimizer,
+        } = this.state
         const {
           availability,
           brand,
@@ -223,24 +176,23 @@ return
 
         const onDecrementQuantity = () => {
           decrementCartItemQuantity()
-  
         }
 
         return (
           <div className="product-details-success-view">
-
             <div className="product-details-container">
- 
- <div className="image-container">     <img    className='zoom-img' style={{width: '100%', height: '100%'}}  onMouseMove={this.onViewImage}      src={imageUrl} alt="product"  />
-        
-        </div>
- 
+              <div className="image-container">
+                {' '}
+                <img
+                  className="zoom-img"
+                  style={{width: '100%', height: '100%'}}
+                  onMouseMove={this.onViewImage}
+                  src={imageUrl}
+                  alt="product"
+                />
+              </div>
 
-          
-          
-           
-            
-                <div className="product">
+              <div className="product">
                 <h1 className="product-name">{title}</h1>
                 <p className="price-details">Rs {price}/-</p>
                 <div className="rating-and-reviews-count">
@@ -296,8 +248,7 @@ return
             <ul className="similar-products-list">
               {similarProductsData.map(eachSimilarProduct => (
                 <SimilarProductItem
-
-                changeProduct={this.changeProduct}
+                  changeProduct={this.changeProduct}
                   productDetails={eachSimilarProduct}
                   key={eachSimilarProduct.id}
                 />

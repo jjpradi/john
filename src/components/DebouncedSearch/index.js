@@ -1,36 +1,27 @@
-import React, { useState } from 'react';
+import React, {useState} from 'react'
 
-let debounceTimeout;
+let debounceTimeout
 
 const DebouncedSearch = () => {
-    const [query, setQuery] = useState('');
-    const [result, setResult] = useState('');
+  const [query, setQuery] = useState('')
+  const [result, setResult] = useState('')
 
-    const handleChange = e => {
-        const value = e.target.value;
-        setQuery(value);
-        clearTimeout(debounceTimeout);
-        
+  const handleChange = e => {
+    const value = e.target.value
+    setQuery(value)
+    clearTimeout(debounceTimeout)
 
-        debounceTimeout = setTimeout(() => {
-    
-            setResult(`Results for: ${value}`);
-    
-        }, 500);
-        
-    };
+    debounceTimeout = setTimeout(() => {
+      setResult(`Results for: ${value}`)
+    }, 500)
+  }
 
+  return (
+    <div className="debounced-search">
+      <input value={query} onChange={handleChange} placeholder="Search..." />
+      <div>{result}</div>
+    </div>
+  )
+}
 
-
-
-    return (
-        <div className="debounced-search">
-            <input value={query} onChange={handleChange} placeholder="Search..." />
-            <div>{result}</div>
-        </div>
-    );
-
-
-};
-
-export default DebouncedSearch;
+export default DebouncedSearch

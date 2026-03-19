@@ -1,46 +1,42 @@
-import React, { useState } from 'react';
-import "./index.css";
+import React, {useState} from 'react'
+import './index.css'
 
-const API_URL = "http://localhost:5000/chat";
+const API_URL = 'http://localhost:5000/chat'
 
 const AIChatbot = () => {
-  const [open, setOpen] = useState(false);   // 👈 NEW
-  const [messages, setMessages] = useState([]);
-  const [input, setInput] = useState('');
-  const [loading, setLoading] = useState(false);
+  const [open, setOpen] = useState(false) // 👈 NEW
+  const [messages, setMessages] = useState([])
+  const [input, setInput] = useState('')
+  const [loading, setLoading] = useState(false)
 
   const handleSend = async () => {
-    if (!input.trim()) return;
+    if (!input.trim()) return
 
-    const userMsg = { text: input, sender: 'user' };
-    setMessages((prev) => [...prev, userMsg]);
+    const userMsg = {text: input, sender: 'user'}
+    setMessages(prev => [...prev, userMsg])
 
-    setInput('');
-    setLoading(true);
+    setInput('')
+    setLoading(true)
 
     try {
       const res = await fetch(API_URL, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ message: input })
-      });
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({message: input}),
+      })
 
-      const data = await res.json();
+      const data = await res.json()
 
-      setMessages((prev) => [
-        ...prev,
-        { text: data.reply, sender: 'bot' }
-      ]);
-
+      setMessages(prev => [...prev, {text: data.reply, sender: 'bot'}])
     } catch (e) {
-      setMessages((prev) => [
+      setMessages(prev => [
         ...prev,
-        { text: "Sorry, something went wrong.", sender: 'bot' }
-      ]);
+        {text: 'Sorry, something went wrong.', sender: 'bot'},
+      ])
     }
 
-    setLoading(false);
-  };
+    setLoading(false)
+  }
 
   return (
     <>
@@ -56,7 +52,7 @@ const AIChatbot = () => {
 
           <div className="chat-window">
             {messages.map((msg, idx) => (
-              <div key={idx} className={msg.sender + " message-bubble"}>
+              <div key={idx} className={msg.sender + ' message-bubble'}>
                 {msg.text}
               </div>
             ))}
@@ -80,7 +76,7 @@ const AIChatbot = () => {
         </div>
       )}
     </>
-  );
-};
+  )
+}
 
-export default AIChatbot;
+export default AIChatbot

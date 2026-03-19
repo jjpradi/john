@@ -5,6 +5,3 @@ const SuccessView = () => (
 )
 
 export default SuccessView
-
-
-

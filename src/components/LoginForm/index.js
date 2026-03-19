@@ -21,11 +21,10 @@ class LoginForm extends Component {
   }
 
   onSubmitSuccess = jwtToken => {
-
     Cookies.set('jwt_token', jwtToken, {
       expires: 30,
     })
-    Navigate("/")
+    Navigate('/')
   }
 
   onSubmitFailure = errorMsg => {
@@ -33,23 +32,21 @@ class LoginForm extends Component {
   }
 
   submitForm = async event => {
-   
     event.preventDefault()
-    
 
     const {username, password} = this.state
-   
+
     const userDetails = {username, password}
-   
+
     const url = 'https://apis.ccbp.in/login'
-   
+
     const options = {
       method: 'POST',
       body: JSON.stringify(userDetails),
     }
-   
+
     const response = await fetch(url, options)
-   
+
     const data = await response.json()
     if (response.ok === true) {
       this.onSubmitSuccess(data.jwt_token)

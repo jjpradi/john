@@ -1,24 +1,19 @@
-import {Link,Navigate} from 'react-router-dom'
+import {Link, Navigate} from 'react-router-dom'
 import Cookies from 'js-cookie'
-import {useParams} from "react-router-dom"
+import {useParams} from 'react-router-dom'
 import CartContext from '../../context/CartContext'
 
 import './index.css'
 import DarkModeToggle from '../DarkModeToggle'
 
 const Header = props => {
-  
   const onClickLogout = () => {
-      
     Cookies.remove('jwt_token')
 
-    Navigate("/login")
-
+    Navigate('/login')
   }
 
   const renderCartItemsCount = () => (
-
-    
     <CartContext.Consumer>
       {value => {
         const {cartList} = value
@@ -87,23 +82,20 @@ const Header = props => {
               </Link>
             </li>
 
-
             <li className="nav-menu-item">
               <Link to="/cart" className="nav-link">
                 Cart
                 {renderCartItemsCount()}
               </Link>
-
-            </li  >
-          <li   className='nav-menu-item'>          <DarkModeToggle/>
-          </li>
-  
+            </li>
+            <li className="nav-menu-item">
+              {' '}
+              <DarkModeToggle />
+            </li>
           </ul>
 
-          
           <button
-          
-          type="button"
+            type="button"
             className="logout-desktop-btn"
             onClick={onClickLogout}
           >

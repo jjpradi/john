@@ -1,118 +1,116 @@
+import Product360 from '../Product360'
 
-import Product360 from "../Product360"
-
-import {useNavigate,Navigate} from "react-router-dom"
-import {useEffect,useState}  from "react"
-import "./index.css"
-import Slider from "react-slick";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
-import Cookies from "js-cookie"
+import {useNavigate, Navigate} from 'react-router-dom'
+import {useEffect, useState} from 'react'
+import './index.css'
+import Slider from 'react-slick'
+import 'slick-carousel/slick/slick.css'
+import 'slick-carousel/slick/slick-theme.css'
+import Cookies from 'js-cookie'
 const settings = {
-      dots: true,
-    infinite: true,
-   autoplay:true, autoplaySpeed: 2000, 
- pauseOnHover: true,
-    speed: 500,
-    slidesToShow: 3,
-    slidesToScroll: 1,
-    responsive: [
-        {
-            breakpoint: 768,
-            settings: {
-                slidesToShow: 1,
-            },
-        },
-        {
-            breakpoint: 1024,
-            settings: {
-                slidesToShow: 2,
-            },
-        },
-    ],
-};
-
-
-
-const Trending=(props)=>{
-    
-    
-    
-    const[product,setProducts]=useState([])
-
-
-
-const onChangeRoute=()=>{
-
-
-props.replace("/products")
+  dots: true,
+  infinite: true,
+  autoplay: true,
+  autoplaySpeed: 2000,
+  pauseOnHover: true,
+  speed: 500,
+  slidesToShow: 3,
+  slidesToScroll: 1,
+  responsive: [
+    {
+      breakpoint: 768,
+      settings: {
+        slidesToShow: 1,
+      },
+    },
+    {
+      breakpoint: 1024,
+      settings: {
+        slidesToShow: 2,
+      },
+    },
+  ],
 }
 
-useEffect(() => {
-const jwtToken=Cookies.get("jwt_token")
+const Trending = props => {
+  const [product, setProducts] = useState([])
 
-console.log(jwtToken)
+  const onChangeRoute = () => {
+    props.replace('/products')
+  }
 
-const options={
+  useEffect(() => {
+    const jwtToken = Cookies.get('jwt_token')
 
-method:"GET",
-headers:{
-    Authorization:`Bearer: ${jwtToken}`
-}
+    console.log(jwtToken)
 
-}
-
-  const fetchTrending = async () => {
-    const res = await fetch("https://apis.ccbp.in/products/trending",options)
-    const data = await res.json()
-    setProducts(data.products)
-  console.log(data)
-  console.log(product)
-
-}
-
-
-  fetchTrending()
-}, [])
-
-
-
-    const onHome=()=>{
-
- const navigate=useNavigate()
-  
- 
- this.props.replace("/products")
-
-
+    const options = {
+      method: 'GET',
+      headers: {
+        Authorization: `Bearer: ${jwtToken}`,
+      },
     }
 
+    const fetchTrending = async () => {
+      const res = await fetch('https://apis.ccbp.in/products/trending', options)
+      const data = await res.json()
+      setProducts(data.products)
+      console.log(data)
+      console.log(product)
+    }
 
-return (
+    fetchTrending()
+  }, [])
 
-<div  className="fitness-product"   style={{padding:"33px",backgroundColor:"#222",height:"56vh",marginLeft:"25vw",marginLeft:"15vw",minHeight:"23vh"}}>
+  const onHome = () => {
+    const navigate = useNavigate()
 
-<h1>Sports & Fitness</h1>
+    this.props.replace('/products')
+  }
 
-<Slider       {...settings}   style={{width:"43vw",minHeight:"37vh"}}   >
+  return (
+    <div
+      className="fitness-product"
+      style={{
+        padding: '33px',
+        backgroundColor: '#222',
+        height: '56vh',
+        marginLeft: '25vw',
+        marginLeft: '15vw',
+        minHeight: '23vh',
+      }}
+    >
+      <h1>Sports & Fitness</h1>
 
-<img onClick={onChangeRoute}     className="img"  style={{  margin:"34px",   minHeight:"5vh"}} src="https://i.ibb.co/35KHhwpY/dumbell-3.jpg"/>
+      <Slider {...settings} style={{width: '43vw', minHeight: '37vh'}}>
+        <img
+          onClick={onChangeRoute}
+          className="img"
+          style={{margin: '34px', minHeight: '5vh'}}
+          src="https://i.ibb.co/35KHhwpY/dumbell-3.jpg"
+        />
 
-<img  className="img"  onClick={onHome}    style={{minHeight:"5vh",width:"5vw",fontSize:"55px"}} src="https://i.ibb.co/CKx72ZBS/dumbell-2.jpg"/>
-<img  className="img"      onClick={onHome}    style={{minHeight:"5vh",width:"5vw"}}  src="https://i.ibb.co/HfVycRLK/dumbell-1.jpg"/>
-<img  className="img"       onClick={onHome}   style={{minHeight:"5vh",width:"5vw"}}   src="https://i.ibb.co/dn0k0rQ/dumbell-4.jpg"/>
-
-
-
-</Slider>
-</div>
-
-
-
-)
-
-
-
+        <img
+          className="img"
+          onClick={onHome}
+          style={{minHeight: '5vh', width: '5vw', fontSize: '55px'}}
+          src="https://i.ibb.co/CKx72ZBS/dumbell-2.jpg"
+        />
+        <img
+          className="img"
+          onClick={onHome}
+          style={{minHeight: '5vh', width: '5vw'}}
+          src="https://i.ibb.co/HfVycRLK/dumbell-1.jpg"
+        />
+        <img
+          className="img"
+          onClick={onHome}
+          style={{minHeight: '5vh', width: '5vw'}}
+          src="https://i.ibb.co/dn0k0rQ/dumbell-4.jpg"
+        />
+      </Slider>
+    </div>
+  )
 }
 
 export default Trending

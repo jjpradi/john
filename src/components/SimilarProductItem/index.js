@@ -3,17 +3,19 @@ import './index.css'
 import {Link} from 'react-router-dom'
 
 const SimilarProductItem = props => {
-  const {productDetails,changeProduct} = props
+  const {productDetails, changeProduct} = props
   const {title, brand, imageUrl, rating, price, id} = productDetails
 
-const onChangeProduct=()=>{
-
-changeProduct(id)
-
-}
+  const onChangeProduct = () => {
+    changeProduct(id)
+  }
 
   return (
-    <Link   onClick={onChangeProduct}  className="similar-link" to={`/products/${id}`}>
+    <Link
+      onClick={onChangeProduct}
+      className="similar-link"
+      to={`/products/${id}`}
+    >
       {' '}
       <li className="similar-product-item">
         <img

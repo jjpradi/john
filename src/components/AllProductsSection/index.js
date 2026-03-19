@@ -1,5 +1,5 @@
-import { Component } from 'react'
-import { Helmet } from 'react-helmet'
+import {Component} from 'react'
+import {Helmet} from 'react-helmet'
 import {ThreeDots} from 'react-loader-spinner'
 import Cookies from 'js-cookie'
 
@@ -74,8 +74,6 @@ const apiStatusConstants = {
 }
 
 class AllProductsSection extends Component {
-
-
   state = {
     productsList: [],
     apiStatus: apiStatusConstants.initial,
@@ -83,7 +81,6 @@ class AllProductsSection extends Component {
     activeCategoryId: '',
     searchInput: '',
     activeRatingId: '',
-
   }
 
   componentDidMount() {
@@ -106,62 +103,42 @@ class AllProductsSection extends Component {
       headers: {
         Authorization: `Bearer ${jwtToken}`,
       },
-      
+
       method: 'GET',
-      
     }
 
-
     const response = await fetch(apiUrl, options)
-    
+
     console.log(response)
 
     if (response.ok) {
-    
       const fetchedData = await response.json()
 
       console.log(fetchedData)
 
       const updatedData = fetchedData.products.map(product => ({
-
         title: product.title,
         brand: product.brand,
         price: product.price,
         id: product.id,
         imageUrl: product.image_url,
         rating: product.rating,
-
       }))
 
-
       this.setState({
-
         productsList: updatedData,
         apiStatus: apiStatusConstants.success,
-
       })
-    
-    
-    }  
-
-    
-
-
-
-    else {
+    } else {
       this.setState({
         apiStatus: apiStatusConstants.failure,
       })
-
-
     }
   }
 
   renderLoadingView = () => (
     <div className="products-loader-container">
-    
       <ThreeDots color="#0b69ff" height="50" width="50" />
-    
     </div>
   )
 
@@ -182,11 +159,11 @@ class AllProductsSection extends Component {
   )
 
   changeSortby = activeOptionId => {
-    this.setState({ activeOptionId }, this.getProducts)
+    this.setState({activeOptionId}, this.getProducts)
   }
 
   renderProductsListView = () => {
-    const { productsList, activeOptionId } = this.state
+    const {productsList, activeOptionId} = this.state
     const shouldShowProductsList = productsList.length > 0
 
     return shouldShowProductsList ? (
@@ -218,7 +195,7 @@ class AllProductsSection extends Component {
   }
 
   renderAllProducts = () => {
-    const { apiStatus } = this.state
+    const {apiStatus} = this.state
 
     switch (apiStatus) {
       case apiStatusConstants.success:
@@ -244,11 +221,11 @@ class AllProductsSection extends Component {
   }
 
   changeRating = activeRatingId => {
-    this.setState({ activeRatingId }, this.getProducts)
+    this.setState({activeRatingId}, this.getProducts)
   }
 
   changeCategory = activeCategoryId => {
-    this.setState({ activeCategoryId }, this.getProducts)
+    this.setState({activeCategoryId}, this.getProducts)
   }
 
   enterSearchInput = () => {
@@ -256,29 +233,31 @@ class AllProductsSection extends Component {
   }
 
   changeSearchInput = searchInput => {
-    this.setState({ searchInput })
+    this.setState({searchInput})
   }
 
   render() {
-    
-    const { activeCategoryId, searchInput, activeRatingId } = this.state
-    
-    
+    const {activeCategoryId, searchInput, activeRatingId} = this.state
 
-    
     return (
       <div className="all-products-section">
         <Helmet>
           <title>All Products | Shop Online</title>
-          <meta name="description" content="Browse and filter all products. Find the best deals on clothing, electronics, appliances, grocery, and toys." />
-          <meta name="keywords" content="products, shop, online, deals, clothing, electronics, appliances, grocery, toys" />
+          <meta
+            name="description"
+            content="Browse and filter all products. Find the best deals on clothing, electronics, appliances, grocery, and toys."
+          />
+          <meta
+            name="keywords"
+            content="products, shop, online, deals, clothing, electronics, appliances, grocery, toys"
+          />
         </Helmet>
-        
+
         <FiltersGroup
           searchInput={searchInput}
           categoryOptions={categoryOptions}
-              ratingsList={ratingsList}
-              changeSearchInput={this.changeSearchInput}
+          ratingsList={ratingsList}
+          changeSearchInput={this.changeSearchInput}
           enterSearchInput={this.enterSearchInput}
           activeCategoryId={activeCategoryId}
           activeRatingId={activeRatingId}
@@ -286,7 +265,6 @@ class AllProductsSection extends Component {
           changeRating={this.changeRating}
           clearFilters={this.clearFilters}
         />
-        
 
         {this.renderAllProducts()}
       </div>

@@ -10,11 +10,9 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-.dark-mode{
-
+.dark-mode {
   background-color: black;
 }
-
 
 .app {
   display: flex;

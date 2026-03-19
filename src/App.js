@@ -1,5 +1,5 @@
-import { Component } from 'react'
-import { Route,Routes, Switch, Redirect } from 'react-router-dom'
+import {Component} from 'react'
+import {Route, Routes, Switch, Redirect} from 'react-router-dom'
 
 import LoginForm from './components/LoginForm'
 import Home from './components/Home'
@@ -23,7 +23,7 @@ import AIChatbot from './components/AIChatbot'
 import DarkModeToggle from './components/DarkModeToggle'
 import DebouncedSearch from './components/DebouncedSearch'
 import './App.css'
-import { HashRouter } from 'react-router-dom'
+import {HashRouter} from 'react-router-dom'
 
 class App extends Component {
   state = {
@@ -35,7 +35,7 @@ class App extends Component {
   //   TODO: Add your code for remove all cart items, increment cart item quantity, decrement cart item quantity, remove cart item
 
   addCartItem = product => {
-    const { cartList } = this.state
+    const {cartList} = this.state
 
     console.log(product.id)
 
@@ -50,7 +50,7 @@ class App extends Component {
     if (existingItem !== undefined) {
       this.setState(prevState => ({
         cartList: prevState.cartList.map(e =>
-          e.id === product.id ? { ...e, quantity: e.quantity + 1 } : null,
+          e.id === product.id ? {...e, quantity: e.quantity + 1} : null,
         ),
         totalCartAmount: prevState.totalCartAmount + parseInt(product.price),
       }))
@@ -68,7 +68,7 @@ class App extends Component {
   }
 
   decrementCartItemQuantity = details => {
-    const { price, quantity } = details
+    const {price, quantity} = details
 
     console.log(quantity)
 
@@ -77,7 +77,7 @@ class App extends Component {
     if (quantity > 1) {
       this.setState(prevState => ({
         cartList: prevState.cartList.map(e =>
-          e.id === details.id ? { ...e, quantity: e.quantity - 1 } : e,
+          e.id === details.id ? {...e, quantity: e.quantity - 1} : e,
         ),
         totalCartAmount: prevState.totalCartAmount - price,
       }))
@@ -87,32 +87,28 @@ class App extends Component {
   incrementCartItemQuantity = details => {
     console.log(details)
 
-    const { quantity, price } = details
-    const { cartList } = this.state
+    const {quantity, price} = details
+    const {cartList} = this.state
     const existingItem = cartList.find(e => e.id === details.id)
     console.log(details)
 
     this.setState(prevState => ({
       cartList: prevState.cartList.map(e =>
-        e.id === details.id ? { ...e, quantity: e.quantity + 1 } : e,
+        e.id === details.id ? {...e, quantity: e.quantity + 1} : e,
       ),
       totalCartAmount: prevState.totalCartAmount + price,
     }))
   }
 
-
-
-
-
   removeCartItem = id => {
-    const { cartList } = this.state
+    const {cartList} = this.state
     const filteredList = cartList.filter(e => e.id !== id)
 
     this.setState({
       cartList: filteredList,
     })
 
-    this.setState(prevState => ({ count: prevState.count - 1 }))
+    this.setState(prevState => ({count: prevState.count - 1}))
   }
 
   removeAllCartItems = () => {
@@ -123,17 +119,11 @@ class App extends Component {
   }
 
   render() {
-
-    const { cartList, totalCartAmount, count } = this.state
+    const {cartList, totalCartAmount, count} = this.state
     console.log(totalCartAmount)
     return (
-
-      
-      
       <CartContext.Provider
-        
-      value={{
-
+        value={{
           cartList,
           totalCartAmount,
           count,
@@ -142,49 +132,65 @@ class App extends Component {
           onRemoval: this.onRemoval,
 
           addCartItem: this.addCartItem,
-    
+
           removeCartItem: this.removeCartItem,
-    
+
           incrementCartItemQuantity: this.incrementCartItemQuantity,
-    
+
           decrementCartItemQuantity: this.decrementCartItemQuantity,
-    
         }}
       >
-          <Routes>
-
-
-          <Route  path="/login" element={<LoginForm/>} />
-          <Route  path="/" element={
-            <ProtectedRoute>
-            <Home/>
-            </ProtectedRoute>
-            } 
-            
-            />
-          <Route path="/products" element={
-            <ProtectedRoute>            <Products/>    </ProtectedRoute>
- } />
+        <Routes>
+          <Route path="/login" element={<LoginForm />} />
+          <Route
+            path="/"
+            element={
+              <ProtectedRoute>
+                <Home />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/products"
+            element={
+              <ProtectedRoute>
+                {' '}
+                <Products />{' '}
+              </ProtectedRoute>
+            }
+          />
           <Route
             path="/products/:id"
-       element={<ProtectedRoute>
-
-<ProductItemDetails/>
-
-       </ProtectedRoute>}
-
-/>
-          <Route path="/orders" element={<ProtectedRoute>  <OrderHistory/> </ProtectedRoute>}/>
-          <Route  path="/cart" element={<ProtectedRoute> <Cart/> </ProtectedRoute>} />
-          <Route path="/not-found" element={<NotFound/>} />
-
+            element={
+              <ProtectedRoute>
+                <ProductItemDetails />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/orders"
+            element={
+              <ProtectedRoute>
+                {' '}
+                <OrderHistory />{' '}
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/cart"
+            element={
+              <ProtectedRoute>
+                {' '}
+                <Cart />{' '}
+              </ProtectedRoute>
+            }
+          />
+          <Route path="/not-found" element={<NotFound />} />
         </Routes>
-<AIChatbot  style={{}}   />
-
+        <AIChatbot style={{}} />
       </CartContext.Provider>
     )
   }
 }
-
 
 export default App
