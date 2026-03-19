@@ -179,7 +179,7 @@ class App extends Component {
           <Route path="/not-found" element={<NotFound/>} />
 
         </Routes>
-
+<AIChatbot  style={{}}   />
 
       </CartContext.Provider>
     )

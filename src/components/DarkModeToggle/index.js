@@ -15,7 +15,7 @@ const DarkModeToggle = () => {
         <div className="dark-mode-toggle">
 
         
-            <button      style={{ backgroundColor:!dark? "black":"white",color:!dark?"white":"black"}}      type="toggle" onClick={toggleDark}>{dark ? 'Light Mode' : 'Dark Mode'}</button>
+            <button   className='btn-outline-black'   type="toggle" onClick={toggleDark}>{dark ? 'Light Mode' : 'Dark Mode'}</button>
         
 
         </div>

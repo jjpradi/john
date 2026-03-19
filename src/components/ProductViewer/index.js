@@ -126,7 +126,7 @@ export default function ProductViewer(props) {
   console.log(props)
   return (
     
-    <Canvas style={{ height: "400px", width: "100%" }}>
+    <Canvas   className="" style={{ height: "400px", width: "100%" }}>
       
       <ambientLight intensity={0.5} />
       

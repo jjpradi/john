@@ -19,23 +19,35 @@
   ],
 
 "screenshots": [
-    {
+  
+  {
       "src": "https://i.ibb.co/9mTp0snN/Screenshot-2026-03-15-194335.png",
       "sizes": "1895x853",
       "type": "image/png",
       "form_factor": "wide"
     },
-     {
+     
+    {
+  
       "src": "https://i.ibb.co/Y4xj53NP/Screenshot-2026-03-15-191535.png",
       "sizes": "613x571",
       "type": "image/png"
+  
     }
+
    
-  ],
+  
+],
+
 
   "start_url": "/",
   "display": "standalone",
   "theme_color": "#0b69ff",
   "background_color": "#ffffff"
 
+
 }
+
+
+
+

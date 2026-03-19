@@ -99,55 +99,7 @@ navigate("/products")
         />
       </div>
 
-      <div   className='electronics-section'   style={{ marginLeft:"15vw",marginRight:"15vw",padding:"33px" }}
->
-
-    <h1  style={{marginLeft:"21vw"}}>
-
-Electronics & Gadgets
-
-
-    </h1>
-     <Slider  style={{color:"grey"
-
-
-     }}  {...settings}>
-  <Link to="/products" >     <ProductViewer   onClick={onHome} name="newphone"    style={{ width:"30vw"}}
-     />
-     </Link>
-
-
-  
-
-    <Link  to="/products">
-
-    <ProductViewer   onClick={onHome} name="iphone13"    style={{ width:"30vw"}}
-     />
-     </Link>
      
-
-  
-<Link to ="/products">
-   
-     <ProductViewer name="watch"     onClick={onHome} style={{ width:"10vw"}}
-     />
-    </Link>
-    <Link to="/products">      
-     <ProductViewer      onClick={onHome} name="pod"    style={{width:"30vw"}}/>
-     </Link>
-
-<Link to="/products">     
-     
-     <ProductViewer name="phone1"     onClick={onHome} style={{width:"30vw"}}/>
-</Link>
-</Slider>
-
-      </div>
-
-<div  className='trending-section'        style={{marginLeft:"17vw"}}  >
-
-          <Trending    />
-</div>
 
 
       {/* Feature Showcase Section */}

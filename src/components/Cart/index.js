@@ -175,8 +175,10 @@ paymentObject.open()
                             <input type="radio" name="pay" value="Cash On Delivery" checked={method === 'Cash On Delivery'} onChange={handlePaymentChange} /> Cash On Delivery
                           </label>
                         </div>
-                        <button className="confirm-button" onClick={handlePayment}>
-                          Confirm Order
+                        <button className="btn  confirm-button" onClick={handlePayment}>
+                        
+                        Confirm Order
+                        
                         </button>
 
                         <p style={{ textAlign: 'center', marginTop: '10px' }}>

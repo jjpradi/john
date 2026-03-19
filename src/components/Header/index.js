@@ -68,7 +68,7 @@ const Header = props => {
               alt="website logo"
             />
           </Link>
-          <ul className="nav-menu">
+          <ul className="d-flex flex-row justify-content-end align-items-center    nav-menu">
             <li className="nav-menu-item">
               <Link to="/" className="nav-link">
                 Home

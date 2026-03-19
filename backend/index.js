@@ -1,29 +1,44 @@
-const express = require("express")
-const Razorpay = require("razorpay")
-const cors = require("cors")
+const express = require("express");
+const cors = require("cors");
+require("dotenv").config();
 
-const app = express()
-app.use(express.json())
-app.use(cors())
+const { GoogleGenAI } = require("@google/genai");
 
-const razorpay = new Razorpay({
-  key_id:"rzp_test_SS7LhR6CQXXuvA",
-  key_secret: "QbH148gStR96w4tpheA3Cbpf",
-})
+const app = express();
+app.use(cors());
+app.use(express.json());
 
-app.post("/create-order", async (req, res) => {
-  const options = {
-    amount: 50000, // amount in paise (₹500)
-    currency: "INR",
-    receipt: "order_rcptid_11",
-  }
-
+const genAI = new GoogleGenAI({
+  apiKey: process.env.GEMINI_API_KEY
+});
+app.post("/chat", async (req, res) => {
   try {
-    const order = await razorpay.orders.create(options)
-    res.json(order)
-  } catch (error) {
-    res.status(500).send(error)
-  }
-})
+    const userMessage = req.body.message;
 
-app.listen(5000, () => console.log("Server running"))
+  const result = await genAI.models.generateContent({
+  model: "gemini-2.5-flash",   // recommended
+  contents:
+  `You are a shopping assistant for NxtTrendz.
+
+Use the below data to answer:
+
+${userMessage}
+  `
+});
+
+    
+
+    const reply = result.text;
+
+    res.json({ reply });
+
+  } catch (err) {
+    console.error(err);
+
+    res.json({
+      reply: "Error: " + err.message
+    });
+  }
+});
+
+app.listen(5000, () => console.log("Server running on 5000"));

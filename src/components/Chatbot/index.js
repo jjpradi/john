@@ -1,6 +1,10 @@
 import React, { useState } from 'react';
 import './index.css';
 
+
+
+
+
 const responses = {
     hello: "Hi! How can I help you?",
     order: "You can view your order history on the Order History page.",
