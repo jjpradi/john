@@ -9,12 +9,14 @@ const DarkModeToggle = () => {
   }
 
   return (
-    <div className="dark-mode-toggle">
+ 
+ <div className="dark-mode-toggle">
       <button className="btn-outline-black" type="toggle" onClick={toggleDark}>
         {dark ? 'Light Mode' : 'Dark Mode'}
       </button>
     </div>
-  )
+ 
+)
 }
 
 export default DarkModeToggle

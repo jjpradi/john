@@ -13,6 +13,7 @@ const genAI = new GoogleGenAI({
 })
 app.post('/chat', async (req, res) => {
   try {
+
     const userMessage = req.body.message
 
     const result = await genAI.models.generateContent({
@@ -38,3 +39,4 @@ ${userMessage}
 })
 
 app.listen(5000, () => console.log('Server running on 5000'))
+
