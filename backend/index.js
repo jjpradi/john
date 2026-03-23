@@ -9,9 +9,15 @@ app.use(cors())
 app.use(express.json())
 
 const genAI = new GoogleGenAI({
+  
   apiKey: process.env.GEMINI_API_KEY,
+
+
+
 })
+
 app.post('/chat', async (req, res) => {
+ 
   try {
 
     const userMessage = req.body.message

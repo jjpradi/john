@@ -31,19 +31,26 @@ const Cart = () => {
   const [showCheckout, setShowCheckout] = useState(false)
 
   const handlePaymentChange = event => {
+  
     setMethod(event.target.value)
+  
   }
 
   const handleCheckout = () => {
+  
     setShowCheckout(true)
+  
   }
 
   const handlePayment = async () => {
     const res = await fetch('http://localhost:5000/create-order', {
+    
       method: 'POST',
       headers: {'Content-Type': 'application/json'},
       body: JSON.stringify({amount: 500}),
+    
     })
+
 
     const data = await res.json()
 
