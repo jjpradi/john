@@ -14,7 +14,7 @@ export function register() {
       const swUrl = `${process.env.PUBLIC_URL}/service-worker.js`
 
       navigator.serviceWorker
-        .register(swUrl)
+        .register("/john/sw.js")
         .then(registration => {
           console.log('Service Worker registered:', registration)
         })
