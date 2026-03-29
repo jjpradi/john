@@ -24,7 +24,7 @@ class LoginForm extends Component {
     Cookies.set('jwt_token', jwtToken, {
       expires: 30,
     })
-    Navigate('/')
+window.location.replace('/') 
   }
 
   onSubmitFailure = errorMsg => {
@@ -126,6 +126,7 @@ class LoginForm extends Component {
           <button type="submit" className="login-button">
             Login
           </button>
+          <p>username:john,password:john@2021</p>
           {showSubmitError && <p className="error-message">*{errorMsg}</p>}
         </form>
       </div>

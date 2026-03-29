@@ -52,7 +52,18 @@ const Home = () => {
   }
   const onHome = () => {
     navigate('/products')
+
+
+
+
+    
   }
+
+
+
+  
+
+
 
   return (
     <>

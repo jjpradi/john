@@ -34,6 +34,10 @@ const Cart = () => {
   
     setMethod(event.target.value)
   
+
+
+    
+
   }
 
   const handleCheckout = () => {
@@ -43,10 +47,13 @@ const Cart = () => {
   }
 
   const handlePayment = async () => {
-    const res = await fetch('http://localhost:5000/create-order', {
-    
+
+      const res = await fetch("https://nxttrendz-back.onrender.com/create-order", {
+      
       method: 'POST',
+      
       headers: {'Content-Type': 'application/json'},
+      
       body: JSON.stringify({amount: 500}),
     
     })
@@ -80,6 +87,7 @@ const Cart = () => {
 
     const paymentObject = new window.Razorpay(options)
     paymentObject.open()
+
   }
 
   const overlayStyle = {
@@ -87,6 +95,9 @@ const Cart = () => {
   }
 
   return (
+
+
+
     <CartContext.Consumer>
       {value => {
         const {cartList, removeAllCartItems} = value

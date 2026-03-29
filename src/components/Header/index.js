@@ -1,4 +1,4 @@
-import {Link, Navigate} from 'react-router-dom'
+import {Link, useNavigate} from 'react-router-dom'
 import Cookies from 'js-cookie'
 import {useParams} from 'react-router-dom'
 import CartContext from '../../context/CartContext'
@@ -7,10 +7,12 @@ import './index.css'
 import DarkModeToggle from '../DarkModeToggle'
 
 const Header = props => {
+const navigate=useNavigate()
+
   const onClickLogout = () => {
     Cookies.remove('jwt_token')
+    navigate('/login')
 
-    Navigate('/login')
   }
 
   const renderCartItemsCount = () => (

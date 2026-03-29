@@ -11,6 +11,7 @@ app.use(express.json())
 
 
 
+
 const genAI = new GoogleGenAI({
   
   apiKey: process.env.GEMINI_API_KEY,
