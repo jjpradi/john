@@ -59,7 +59,7 @@ ${userMessage}
 app.post("/create-order", async (req, res) => {
 
   console.log(req.body)
-
+  
   const options = {
   
     amount: req.body.amount * 100, // in paise
@@ -69,10 +69,15 @@ app.post("/create-order", async (req, res) => {
   };
 
   try {
+  
     const order = await razorpay.orders.create(options);
     res.json(order);
+  
+  
   } catch (err) {
+    
     res.status(500).send(err);
+
   }
 });
 
