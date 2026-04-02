@@ -6,8 +6,11 @@ const crypto = require("crypto");
 const {GoogleGenAI} = require('@google/genai')
 
 const app = express()
+
 app.use(cors())
+
 app.use(express.json())
+
 
 
 
@@ -19,6 +22,7 @@ const genAI = new GoogleGenAI({
 
 
 })
+
 
 app.post('/chat', async (req, res) => {
  
@@ -33,6 +37,7 @@ app.post('/chat', async (req, res) => {
 Use the below data to answer:
 
 ${userMessage}
+
   `,
     })
 

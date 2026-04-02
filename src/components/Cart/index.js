@@ -57,6 +57,7 @@ const Cart = () => {
       body: JSON.stringify({amount: 500}),
     
     })
+    
 
 
     const data = await res.json()

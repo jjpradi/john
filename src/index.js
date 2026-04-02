@@ -11,9 +11,13 @@ import * as serviceWorkerRegistration from './serviceWorkerRegistration'
 const root = ReactDOM.createRoot(document.getElementById('root'))
 
 root.render(
-  <HashRouter>
+
+    <HashRouter>
+  
     <App></App>
-  </HashRouter>,
+  
+    </HashRouter>,
+
 )
 
 serviceWorkerRegistration.register()

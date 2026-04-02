@@ -138,6 +138,7 @@ class App extends Component {
           incrementCartItemQuantity: this.incrementCartItemQuantity,
 
           decrementCartItemQuantity: this.decrementCartItemQuantity,
+          
         }}
       >
         <Routes>
