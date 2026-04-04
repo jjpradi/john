@@ -135,6 +135,15 @@
   cursor: pointer;
   outline: none;
 }
+li:hover{
+color:#0967d2
+
+}
+li:active{
+  background-color: #0967d2;
+  color: #ffffff;
+}
+
 
 @media screen and (max-width: 767px) {
   .logout-desktop-btn {
