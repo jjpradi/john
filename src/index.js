@@ -20,4 +20,8 @@ root.render(
 
 )
 
+
+
+
+
 serviceWorkerRegistration.register()

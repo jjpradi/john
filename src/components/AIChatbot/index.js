@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 import './index.css'
 
-const API_URL = 'http://127.0.0.1:8000/chat/'
+const API_URL = 'https://nxttrendz-back.onrender.com//chat/'
 
 const AIChatbot = () => {
   const [open, setOpen] = useState(false) // 👈 NEW
@@ -52,8 +52,11 @@ const AIChatbot = () => {
 
           <div className="chat-window">
             {messages.map((msg, idx) => (
+              
               <div key={idx} className={msg.sender + ' message-bubble'}>
+              
                 {msg.text}
+              
               </div>
             ))}
 
